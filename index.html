@@ -44,8 +44,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 @media(min-width:1024px){
   .header{padding:0 60px}
 }
-.search-btn{display:none}
-@media(min-width:1024px){.search-btn{display:block}}
+.header.at-top .menu-btn span{background:#fff}
+.header.scrolled .menu-btn span{background:var(--dark)}
 @media(max-width:480px){.header{padding:0 16px}.header-right{gap:14px}}
 
 /* MOBILE MENU */
@@ -263,13 +263,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .modal-features li{font-size:12px;color:var(--text-light);display:flex;align-items:center;gap:8px;letter-spacing:.3px;list-style:none}
 .modal-features li::before{content:'𓂀';font-size:10px;color:var(--gold)}
 
-/* SEARCH OVERLAY */
-.search-overlay{position:fixed;inset:0;z-index:2500;background:rgba(255,255,255,.98);display:flex;align-items:flex-start;justify-content:center;padding-top:140px;opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
-.search-overlay.open{opacity:1;pointer-events:auto}
-.search-inner{width:min(600px,90vw);text-align:center}
-.search-close{position:absolute;top:30px;right:40px;font-size:28px;color:var(--dark)}
-.search-input{width:100%;border:none;border-bottom:2px solid var(--dark);padding:16px 0;font-family:'Cinzel',serif;font-size:24px;letter-spacing:3px;text-align:center;outline:none;background:transparent}
-.search-input::placeholder{color:var(--text-light);opacity:.4}
+/* FOOTER PYRAMIDS */
+.footer-pyramids{width:100%;line-height:0}
+.footer-pyramids svg{width:100%;height:auto;display:block}
 
 /* TOAST */
 .toast{position:fixed;bottom:30px;right:30px;background:var(--dark);color:#fff;padding:16px 28px;border-radius:4px;font-size:13px;letter-spacing:1px;transform:translateY(100px);opacity:0;transition:all .4s var(--ease);z-index:4000;display:flex;align-items:center;gap:10px}
@@ -302,8 +298,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 [dir="rtl"] .lookbook-hover span,[dir="rtl"] .cart-item-name,
 [dir="rtl"] .hieroglyphs-translate{font-family:'Reem Kufi','Cairo',sans-serif}
 [dir="rtl"] .header-nav{direction:rtl}
-[dir="rtl"] .header-left{flex-direction:row-reverse}
-[dir="rtl"] .header-right{flex-direction:row-reverse}
 [dir="rtl"] .mobile-drawer{left:auto;right:0;transform:translateX(100%)}
 [dir="rtl"] .mobile-menu.open .mobile-drawer{transform:translateX(0)}
 [dir="rtl"] .mobile-close{align-self:flex-start}
@@ -336,13 +330,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <!-- LOADER -->
 <div class="loader" id="loader">
-  <svg viewBox="0 0 210 32" fill="currentColor">
-    <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZE</text>
-    <g transform="translate(170,5)">
-      <rect x="0" y="0" width="22" height="4" fill="currentColor"/>
-      <rect x="0" y="9.5" width="22" height="4" fill="currentColor"/>
-      <rect x="0" y="19" width="22" height="4" fill="currentColor"/>
-    </g>
+  <svg viewBox="0 0 190 32" fill="currentColor">
+    <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="14" fill="currentColor">PLUZ</text>
+    <g transform="translate(158,4)"><rect x="0" y="0" width="22" height="3.5" fill="currentColor"/><rect x="0" y="10" width="22" height="3.5" fill="currentColor"/><rect x="0" y="20" width="22" height="3.5" fill="currentColor"/></g>
   </svg>
 </div>
 
@@ -360,21 +350,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
   <div class="header-center">
     <a href="#" class="header-logo">
-      <svg viewBox="0 0 210 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZE</text>
-        <g transform="translate(170,5)">
-          <rect x="0" y="0" width="22" height="4" fill="currentColor"/>
-          <rect x="0" y="9.5" width="22" height="4" fill="currentColor"/>
-          <rect x="0" y="19" width="22" height="4" fill="currentColor"/>
-        </g>
+      <svg viewBox="0 0 190 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="14" fill="currentColor">PLUZ</text>
+        <g transform="translate(158,4)"><rect x="0" y="0" width="22" height="3.5" fill="currentColor"/><rect x="0" y="10" width="22" height="3.5" fill="currentColor"/><rect x="0" y="20" width="22" height="3.5" fill="currentColor"/></g>
       </svg>
     </a>
   </div>
   <div class="header-right">
     <button class="header-icon lang-btn" id="langBtn" aria-label="Language" style="width:auto;font-size:12px;letter-spacing:1px;font-weight:600">عربي</button>
-    <button class="header-icon search-btn" id="searchBtn" aria-label="Search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M16 16l4.5 4.5"/></svg>
-    </button>
     <button class="header-icon cart-btn" id="cartBtn" aria-label="Cart">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span class="cart-count" id="cartCount">0</span>
@@ -426,13 +409,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </div>
 
 <!-- SEARCH OVERLAY -->
-<div class="search-overlay" id="searchOverlay">
-  <button class="search-close" id="searchClose">&times;</button>
-  <div class="search-inner">
-    <input type="text" class="search-input" placeholder="Search" autocomplete="off">
-  </div>
-</div>
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-img desktop"><img src="images/hero-desktop.jpg" alt="PLUZE Collection"></div>
@@ -726,14 +702,42 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 </section>
 
+<!-- PYRAMIDS FOOTER BLEND -->
+<div class="footer-pyramids">
+  <svg viewBox="0 0 1440 360" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f7f6f3"/>
+        <stop offset="15%" stop-color="#e8c9a0"/>
+        <stop offset="35%" stop-color="#d4a574"/>
+        <stop offset="55%" stop-color="#c4956a"/>
+        <stop offset="75%" stop-color="#3d2b1f"/>
+        <stop offset="100%" stop-color="#1a1a1a"/>
+      </linearGradient>
+      <linearGradient id="sunGlow" cx="50%" cy="70%" r="30%" fx="50%" fy="70%">
+        <stop offset="0%" stop-color="#f0c050" stop-opacity=".6"/>
+        <stop offset="100%" stop-color="#f0c050" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <rect width="1440" height="360" fill="url(#skyGrad)"/>
+    <circle cx="720" cy="220" r="50" fill="#f0c050" opacity=".35"/>
+    <circle cx="720" cy="220" r="80" fill="#f0c050" opacity=".1"/>
+    <polygon points="320,300 500,155 680,300" fill="#2a1f14" opacity=".9"/>
+    <polygon points="500,300 700,110 900,300" fill="#1f1610"/>
+    <polygon points="780,300 910,185 1040,300" fill="#251a10" opacity=".85"/>
+    <rect x="0" y="295" width="1440" height="65" fill="#1a1a1a"/>
+    <rect x="0" y="290" width="1440" height="10" fill="#2a1f14" opacity=".5"/>
+  </svg>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-hieroglyphs">𓂀 𓃭 𓋴 𓁹 𓂋 𓇳 𓅃 𓆣 𓂀 𓃭 𓋴 𓁹 𓂋 𓇳 𓅃 𓆣</div>
   <div class="footer-top">
     <div class="footer-brand">
-      <svg viewBox="0 0 210 32" fill="currentColor" height="24">
-        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZE</text>
-        <g transform="translate(170,5)"><rect x="0" y="0" width="22" height="4" fill="currentColor"/><rect x="0" y="9.5" width="22" height="4" fill="currentColor"/><rect x="0" y="19" width="22" height="4" fill="currentColor"/></g>
+      <svg viewBox="0 0 190 32" fill="currentColor" height="24">
+        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="14" fill="currentColor">PLUZ</text>
+        <g transform="translate(158,4)"><rect x="0" y="0" width="22" height="3.5" fill="currentColor"/><rect x="0" y="10" width="22" height="3.5" fill="currentColor"/><rect x="0" y="20" width="22" height="3.5" fill="currentColor"/></g>
       </svg>
       <p>Street Culture. Egyptian Soul. Born in Cairo, worn worldwide. Every thread tells a story that's 5,000 years in the making.</p>
     </div>
@@ -933,13 +937,6 @@ document.getElementById('cartBtn').onclick = () => cartDrawer.classList.add('ope
 document.getElementById('cartClose').onclick = () => cartDrawer.classList.remove('open');
 document.getElementById('cartOverlay').onclick = () => cartDrawer.classList.remove('open');
 
-// SEARCH
-const searchOverlay = document.getElementById('searchOverlay');
-document.getElementById('searchBtn').onclick = () => {
-  searchOverlay.classList.add('open');
-  searchOverlay.querySelector('input').focus();
-};
-document.getElementById('searchClose').onclick = () => searchOverlay.classList.remove('open');
 
 // PRODUCT MODAL
 function openProduct(idx) {
@@ -1120,7 +1117,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     mobileMenu.classList.remove('open');
     cartDrawer.classList.remove('open');
-    searchOverlay.classList.remove('open');
     closeModal();
   }
 });
