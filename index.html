@@ -6,7 +6,7 @@
 <title>PLUZE — Street Culture. Egyptian Soul.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -312,9 +312,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* LANG TOGGLE */
 .lang-btn{font-family:'DM Sans',system-ui,sans-serif !important}
+[dir="rtl"] .lang-btn{font-family:'Cairo',system-ui,sans-serif !important}
 
 /* RTL SUPPORT */
-[dir="rtl"] body{font-family:'DM Sans','Cairo',system-ui,sans-serif}
+[dir="rtl"] body{font-family:'Cairo',system-ui,sans-serif}
+[dir="rtl"] .cinzel,[dir="rtl"] .section-title,[dir="rtl"] .campaign-title,[dir="rtl"] .story-title,
+[dir="rtl"] .newsletter-title,[dir="rtl"] .category-name,[dir="rtl"] .hero-title,
+[dir="rtl"] .product-name,[dir="rtl"] .modal-name,[dir="rtl"] .cart-header h3,
+[dir="rtl"] .footer-col h4,[dir="rtl"] .feature-title,[dir="rtl"] .product-quick,
+[dir="rtl"] .hero-cta span,[dir="rtl"] .campaign-btn,[dir="rtl"] .cart-checkout-btn,
+[dir="rtl"] .modal-add-btn,[dir="rtl"] .newsletter-form button,
+[dir="rtl"] .header-nav a,[dir="rtl"] .mobile-links a,
+[dir="rtl"] .lookbook-hover span,[dir="rtl"] .cart-item-name{font-family:'Reem Kufi','Cairo',sans-serif}
 [dir="rtl"] .header-nav{direction:rtl}
 [dir="rtl"] .header-left{flex-direction:row-reverse}
 [dir="rtl"] .header-right{flex-direction:row-reverse}
