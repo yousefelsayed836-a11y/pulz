@@ -122,6 +122,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .hieroglyphs-text{font-size:clamp(24px,4vw,40px);letter-spacing:10px;color:var(--gold);opacity:.6;margin-bottom:20px;line-height:1.5}
 .hieroglyphs-translate{font-family:'Cinzel',serif;font-size:clamp(15px,2vw,20px);letter-spacing:2px;color:var(--dark);line-height:1.6;font-style:italic}
 .hieroglyphs-source{font-size:12px;color:var(--text-light);letter-spacing:1.5px;margin-top:12px;opacity:.7}
+.pharaonic-quote-dark{background:var(--dark);padding:50px 20px}
+.pharaonic-quote-dark .hieroglyphs-text{color:var(--gold);opacity:.4}
+.pharaonic-quote-dark .hieroglyphs-translate{color:var(--cream)}
+.pharaonic-quote-dark .hieroglyphs-source{color:rgba(255,255,255,.4)}
+
+/* PHARAONIC STRIP */
+.pharaonic-strip{display:flex;align-items:center;justify-content:center;gap:24px;padding:40px 20px;flex-wrap:wrap}
+@media(min-width:768px){.pharaonic-strip{gap:40px;padding:50px 40px}}
+.strip-item{display:flex;flex-direction:column;align-items:center;gap:6px}
+.strip-glyph{font-size:clamp(20px,3vw,28px);color:var(--gold);opacity:.5;letter-spacing:4px}
+.strip-meaning{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light)}
+.strip-dot{font-size:16px;color:var(--gold);opacity:.3}
 
 
 /* SECTION COMMON */
@@ -448,6 +460,29 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 </section>
 
+<!-- PHARAONIC WISDOM STRIP -->
+<div class="pharaonic-strip reveal">
+  <div class="strip-item">
+    <span class="strip-glyph">𓂋𓏏𓈖𓀀</span>
+    <span class="strip-meaning" data-i18n="glyph_1">Strength of the Nile</span>
+  </div>
+  <span class="strip-dot">𓇳</span>
+  <div class="strip-item">
+    <span class="strip-glyph">𓅃𓋴𓏭𓂧</span>
+    <span class="strip-meaning" data-i18n="glyph_2">Wings of Horus</span>
+  </div>
+  <span class="strip-dot">𓇳</span>
+  <div class="strip-item">
+    <span class="strip-glyph">𓆣𓂀𓏤𓁹</span>
+    <span class="strip-meaning" data-i18n="glyph_3">Eye of Eternity</span>
+  </div>
+  <span class="strip-dot">𓇳</span>
+  <div class="strip-item">
+    <span class="strip-glyph">𓃭𓈖𓏏𓅱</span>
+    <span class="strip-meaning" data-i18n="glyph_4">Heart of Kings</span>
+  </div>
+</div>
+
 <!-- NEW ARRIVALS -->
 <section class="section" id="new-arrivals">
   <div class="section-header reveal">
@@ -616,6 +651,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </section>
 
 
+<!-- PHARAONIC QUOTE 2 -->
+<section class="pharaonic-quote pharaonic-quote-dark reveal">
+  <div class="pharaonic-quote-inner">
+    <p class="hieroglyphs-text">𓅃𓀀𓁹𓂧𓏭𓈖𓋴𓃭𓏏𓆣𓂀𓇳</p>
+    <p class="hieroglyphs-translate" data-i18n="pharaonic_quote2">"The sun rises for those who dress in truth and walk in light."</p>
+    <p class="hieroglyphs-source" data-i18n="pharaonic_source2">— Book of the Dead, Chapter 125</p>
+  </div>
+</section>
+
 <!-- LOOKBOOK -->
 <section class="section" id="lookbook">
   <div class="section-header reveal">
@@ -672,6 +716,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <img src="images/community-5.jpg" alt="Community" loading="lazy">
       <div class="community-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg></div>
     </div>
+  </div>
+</section>
+
+<!-- PHARAONIC QUOTE 3 -->
+<section class="pharaonic-quote reveal">
+  <div class="pharaonic-quote-inner">
+    <p class="hieroglyphs-text">𓂀𓏤𓅱𓂋𓁹𓃭𓈖𓏏𓋴𓆣𓅃𓇳𓂧𓏭</p>
+    <p class="hieroglyphs-translate" data-i18n="pharaonic_quote3">"A king is not made by gold, but by the fire within his soul."</p>
+    <p class="hieroglyphs-source" data-i18n="pharaonic_source3">— The Teachings of Ptahhotep</p>
   </div>
 </section>
 
@@ -797,6 +850,14 @@ const i18n = {
     lookbook:'لوك بوك',
     pharaonic_quote:'"سلكتُ الدرب الأبدي — روحي تحيا في كل خيط."',
     pharaonic_source:'— نقش من مقبرة خوفو، الأسرة الرابعة',
+    pharaonic_quote2:'"الشمس تشرق لمن يرتدي الحقيقة ويمشي في النور."',
+    pharaonic_source2:'— كتاب الموتى، الفصل ١٢٥',
+    pharaonic_quote3:'"الملك لا يصنعه الذهب، بل النار التي في روحه."',
+    pharaonic_source3:'— تعاليم بتاح حتب',
+    glyph_1:'قوة النيل',
+    glyph_2:'أجنحة حورس',
+    glyph_3:'عين الأبدية',
+    glyph_4:'قلب الملوك',
     community:'انضم للعيلة',
     newsletter_title:'انضم للعيلة',
     email_placeholder:'بريدك الإلكتروني',subscribe:'اشترك',
