@@ -45,9 +45,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .header-nav{display:none}
 @media(min-width:1024px){
   .header{padding:0 60px}
+  .header-nav{display:flex;gap:28px;margin-left:30px}
+  .header-nav a{font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:color .3s;font-family:'Cinzel',serif}
+  .header-nav a:hover{color:var(--gold)}
 }
 .header.at-top .menu-btn span{background:#fff}
 .header.scrolled .menu-btn span{background:var(--dark)}
+.header.at-top .header-nav a{color:#fff}
+.header.scrolled .header-nav a{color:var(--dark)}
 @media(max-width:480px){.header{padding:0 16px}.header-right{gap:14px}}
 
 /* MOBILE MENU */
@@ -318,12 +323,158 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 [dir="rtl"] .newsletter{direction:rtl}
 [dir="rtl"] .pharaonic-quote{direction:rtl}
 [dir="rtl"] .strip-meaning{direction:rtl}
+[dir="rtl"] .checkout-form-section{direction:rtl}
+[dir="rtl"] .checkout-header{direction:rtl}
+[dir="rtl"] .checkout-summary{direction:rtl}
+[dir="rtl"] .video-story{direction:rtl}
+[dir="rtl"] .discount-popup-content{direction:rtl}
+[dir="rtl"] .order-confirmation{direction:rtl}
+[dir="rtl"] .checkout-header h2,[dir="rtl"] .checkout-form-group h3,
+[dir="rtl"] .checkout-summary h3,[dir="rtl"] .checkout-place-btn,
+[dir="rtl"] .order-continue-btn,[dir="rtl"] .discount-popup h3,
+[dir="rtl"] .discount-popup-cta,[dir="rtl"] .order-confirmation h2{font-family:'Reem Kufi','Cairo',sans-serif}
 
 /* LOADING SCREEN */
 .loader{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s var(--ease)}
 .loader.done{opacity:0;pointer-events:none}
 .loader-logo{height:32px;filter:brightness(0) invert(1);animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* VIDEO STORY SECTION */
+.video-story{padding:80px 20px;background:var(--dark);position:relative;overflow:hidden}
+@media(min-width:768px){.video-story{padding:100px 60px}}
+.video-story .section-header{margin-bottom:40px}
+.video-story .section-label{color:var(--gold)}
+.video-story .section-title{color:var(--cream)}
+.video-story .section-desc{color:rgba(255,255,255,.6)}
+.video-container{position:relative;max-width:900px;margin:0 auto;border-radius:8px;overflow:hidden;aspect-ratio:16/9;background:#000;cursor:pointer;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.video-container video{width:100%;height:100%;object-fit:cover;display:block}
+.video-poster{position:absolute;inset:0;z-index:2;transition:opacity .5s var(--ease)}
+.video-poster img{width:100%;height:100%;object-fit:cover}
+.video-poster.hidden{opacity:0;pointer-events:none}
+.video-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;width:80px;height:80px;border-radius:50%;background:rgba(184,134,11,.9);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease);box-shadow:0 0 0 0 rgba(184,134,11,.4)}
+.video-play-btn:hover{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 0 20px rgba(184,134,11,0)}
+.video-play-btn svg{width:28px;height:28px;fill:#fff;margin-left:4px}
+.video-play-btn.hidden{opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.5)}
+.video-progress{position:absolute;bottom:0;left:0;height:3px;background:var(--gold);z-index:4;transition:width .1s linear}
+.video-discount-badge{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:12px 24px;background:rgba(184,134,11,.15);border:1px solid rgba(184,134,11,.3);border-radius:30px;color:var(--gold);font-size:13px;letter-spacing:1px;font-weight:500}
+.video-discount-badge svg{width:18px;height:18px;fill:var(--gold)}
+
+/* MOBILE VIDEO FULLSCREEN */
+.video-mobile-fullscreen{display:none;position:fixed;inset:0;z-index:5000;background:#000;align-items:center;justify-content:center}
+.video-mobile-fullscreen.active{display:flex}
+.video-mobile-fullscreen video{width:100vh;height:100vw;transform:rotate(90deg);object-fit:cover}
+.video-mobile-fullscreen .vfs-close{position:absolute;top:16px;right:16px;z-index:5001;width:40px;height:40px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px}
+.video-mobile-fullscreen .vfs-progress{position:absolute;bottom:0;left:0;height:3px;background:var(--gold);z-index:5001}
+.rotate-prompt{position:absolute;inset:0;z-index:5002;background:rgba(0,0,0,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;color:#fff;text-align:center;padding:30px;transition:opacity .5s var(--ease)}
+.rotate-prompt.hidden{opacity:0;pointer-events:none}
+.rotate-prompt .rotate-icon{width:60px;height:60px;animation:rotatePhone 2s ease-in-out infinite}
+@keyframes rotatePhone{0%,100%{transform:rotate(0deg)}50%{transform:rotate(90deg)}}
+.rotate-prompt p{font-family:'Cinzel',serif;font-size:16px;letter-spacing:2px}
+.rotate-prompt .rotate-sub{font-family:'DM Sans',sans-serif;font-size:13px;opacity:.7;letter-spacing:0;margin-top:-8px}
+.rotate-prompt .skip-rotate{margin-top:10px;padding:10px 28px;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:12px;letter-spacing:2px;text-transform:uppercase;border-radius:30px;transition:all .3s}
+.rotate-prompt .skip-rotate:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+
+@media(min-width:769px){.video-mobile-fullscreen{display:none !important}}
+@media(max-width:768px){.video-container{border-radius:6px;aspect-ratio:16/9}}
+@media (orientation: landscape) and (max-height:500px){
+  .video-mobile-fullscreen video{width:100%;height:100%;transform:none}
+}
+
+/* DISCOUNT POPUP */
+.discount-popup{position:fixed;inset:0;z-index:6000;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .4s var(--ease)}
+.discount-popup.open{pointer-events:auto;opacity:1}
+.discount-popup-overlay{position:absolute;inset:0;background:rgba(0,0,0,.7)}
+.discount-popup-content{position:relative;background:#fff;width:min(440px,90vw);border-radius:12px;padding:40px 32px;text-align:center;z-index:1;transform:scale(.8) translateY(30px);transition:all .5s var(--ease);overflow:hidden}
+.discount-popup.open .discount-popup-content{transform:scale(1) translateY(0)}
+.discount-popup-close{position:absolute;top:12px;right:12px;width:32px;height:32px;background:rgba(0,0,0,.05);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text-light);transition:all .2s}
+.discount-popup-close:hover{background:rgba(0,0,0,.1);color:var(--dark)}
+.discount-confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.confetti-piece{position:absolute;width:8px;height:8px;border-radius:2px;top:-10px;animation:confettiFall 3s linear forwards}
+@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(500px) rotate(720deg);opacity:0}}
+.discount-popup-icon{width:64px;height:64px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;animation:popIn .5s var(--ease) .2s both}
+@keyframes popIn{0%{transform:scale(0);opacity:0}60%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+.discount-popup-icon svg{width:30px;height:30px;fill:#fff}
+.discount-popup h3{font-family:'Cinzel',serif;font-size:22px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;color:var(--dark);animation:popIn .5s var(--ease) .3s both}
+.discount-popup-sub{font-size:14px;color:var(--text-light);margin-bottom:20px;animation:popIn .5s var(--ease) .35s both}
+.discount-code-box{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--papyrus);border:2px dashed var(--gold);border-radius:8px;padding:14px 24px;margin-bottom:20px;animation:popIn .5s var(--ease) .4s both}
+.discount-code{font-family:'Cinzel',serif;font-size:24px;letter-spacing:4px;color:var(--gold);font-weight:700}
+.discount-copy-btn{padding:6px 14px;background:var(--dark);color:#fff;font-size:10px;letter-spacing:1px;text-transform:uppercase;border-radius:4px;transition:all .3s}
+.discount-copy-btn:hover{background:var(--gold)}
+.discount-copy-btn.copied{background:#27ae60}
+.discount-popup-cta{display:inline-block;width:100%;padding:16px;background:var(--dark);color:#fff;font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;border-radius:4px;transition:all .3s;animation:popIn .5s var(--ease) .45s both}
+.discount-popup-cta:hover{background:var(--gold)}
+.discount-percent{font-size:48px;font-family:'Cinzel',serif;font-weight:800;color:var(--gold);line-height:1;margin-bottom:4px;animation:popIn .5s var(--ease) .25s both}
+
+/* CHECKOUT PAGE */
+.checkout-page{position:fixed;inset:0;z-index:3500;background:var(--bg);overflow-y:auto;transform:translateX(100%);transition:transform .5s var(--ease);display:flex;flex-direction:column}
+.checkout-page.open{transform:translateX(0)}
+.checkout-header{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;border-bottom:1px solid rgba(0,0,0,.08);background:var(--bg);position:sticky;top:0;z-index:1}
+.checkout-header h2{font-family:'Cinzel',serif;font-size:16px;letter-spacing:4px;text-transform:uppercase}
+.checkout-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-light);letter-spacing:1px;transition:color .3s}
+.checkout-back:hover{color:var(--dark)}
+.checkout-back svg{width:18px;height:18px}
+.checkout-body{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:30px 20px;display:grid;grid-template-columns:1fr;gap:30px}
+@media(min-width:768px){.checkout-body{grid-template-columns:1fr 380px;padding:40px 40px}}
+.checkout-form-section{display:flex;flex-direction:column;gap:24px}
+.checkout-form-group h3{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(0,0,0,.08)}
+.checkout-form-group .form-row{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px}
+@media(min-width:480px){.checkout-form-group .form-row.two-col{grid-template-columns:1fr 1fr}}
+.checkout-input{width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);border-radius:4px;font-family:inherit;font-size:14px;transition:border-color .3s;background:transparent}
+.checkout-input:focus{outline:none;border-color:var(--gold)}
+.checkout-input::placeholder{color:var(--text-light);opacity:.6}
+.checkout-select{width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,.12);border-radius:4px;font-family:inherit;font-size:14px;background:transparent;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6'%3E%3Cpath d='M0 0l6 6 6-6' fill='%236b5e50'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.checkout-select:focus{outline:none;border-color:var(--gold)}
+.checkout-payment-methods{display:flex;flex-direction:column;gap:10px}
+.payment-option{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid rgba(0,0,0,.12);border-radius:4px;cursor:pointer;transition:all .2s}
+.payment-option:hover{border-color:var(--gold)}
+.payment-option input{display:none}
+.payment-option input:checked ~ .payment-radio{background:var(--gold);border-color:var(--gold)}
+.payment-option input:checked ~ .payment-radio::after{opacity:1}
+.payment-radio{width:20px;height:20px;border-radius:50%;border:2px solid rgba(0,0,0,.2);position:relative;flex-shrink:0;transition:all .2s}
+.payment-radio::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:8px;height:8px;border-radius:50%;background:#fff;opacity:0;transition:opacity .2s}
+.payment-label{font-size:14px;letter-spacing:.5px}
+.checkout-discount-row{display:flex;gap:8px}
+.checkout-discount-row input{flex:1}
+.checkout-discount-row button{padding:12px 20px;background:var(--dark);color:#fff;font-size:12px;letter-spacing:1px;text-transform:uppercase;border-radius:4px;white-space:nowrap;transition:background .3s}
+.checkout-discount-row button:hover{background:var(--gold)}
+.checkout-summary{background:var(--papyrus);border-radius:8px;padding:24px;height:fit-content;position:sticky;top:80px}
+.checkout-summary h3{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(0,0,0,.08)}
+.checkout-summary-items{display:flex;flex-direction:column;gap:14px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(0,0,0,.06)}
+.checkout-item{display:flex;gap:12px;align-items:center}
+.checkout-item-img{width:56px;height:68px;border-radius:4px;overflow:hidden;flex-shrink:0}
+.checkout-item-img img{width:100%;height:100%;object-fit:cover}
+.checkout-item-info{flex:1;min-width:0}
+.checkout-item-name{font-size:12px;font-weight:500;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.checkout-item-meta{font-size:11px;color:var(--text-light)}
+.checkout-item-price{font-size:13px;font-weight:600;color:var(--dark);white-space:nowrap}
+.checkout-totals{display:flex;flex-direction:column;gap:10px}
+.checkout-totals .row{display:flex;justify-content:space-between;font-size:14px}
+.checkout-totals .row.discount{color:#27ae60}
+.checkout-totals .row.total{font-size:18px;font-weight:700;font-family:'Cinzel',serif;padding-top:12px;border-top:1px solid rgba(0,0,0,.1);margin-top:4px}
+.checkout-place-btn{width:100%;padding:16px;background:var(--dark);color:#fff;font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;border-radius:4px;transition:all .3s;margin-top:20px}
+.checkout-place-btn:hover{background:var(--gold)}
+
+/* ORDER CONFIRMATION */
+.order-confirmation{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 30px;min-height:70vh;gap:20px}
+.order-confirmation.show{display:flex}
+.order-check{width:80px;height:80px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:popIn .6s var(--ease) both}
+.order-check svg{width:36px;height:36px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.order-confirmation h2{font-family:'Cinzel',serif;font-size:clamp(20px,4vw,28px);letter-spacing:4px;text-transform:uppercase}
+.order-confirmation p{font-size:14px;color:var(--text-light);max-width:400px;line-height:1.7}
+.order-number{font-family:'Cinzel',serif;font-size:16px;color:var(--gold);letter-spacing:2px;background:var(--papyrus);padding:10px 24px;border-radius:4px}
+.order-continue-btn{padding:16px 40px;background:var(--dark);color:#fff;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;border-radius:4px;transition:all .3s;margin-top:10px}
+.order-continue-btn:hover{background:var(--gold)}
+
+/* DISCOUNT APPLIED TAG */
+.discount-applied-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(39,174,96,.1);color:#27ae60;font-size:11px;letter-spacing:1px;border-radius:20px;margin-top:4px}
+
+/* RTL CHECKOUT */
+[dir="rtl"] .checkout-select{background-position:left 16px center}
+[dir="rtl"] .checkout-back{flex-direction:row-reverse}
+[dir="rtl"] .checkout-item{direction:rtl}
+[dir="rtl"] .checkout-totals .row{direction:rtl}
+[dir="rtl"] .discount-code-box{direction:ltr}
 </style>
 </head>
 <body>
@@ -343,6 +494,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <a href="#new-arrivals" data-i18n="nav_new">New In</a>
       <a href="#categories" data-i18n="nav_shop">Shop</a>
       <a href="#lookbook" data-i18n="nav_lookbook">Lookbook</a>
+      <a href="#our-story" data-i18n="nav_story">Our Story</a>
     </nav>
   </div>
   <div class="header-center">
@@ -369,6 +521,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <a href="#categories" class="mobile-link" data-i18n="nav_shop_all">Shop All</a>
       <a href="#lookbook" class="mobile-link" data-i18n="nav_lookbook">Lookbook</a>
       <a href="#community" class="mobile-link" data-i18n="nav_community">Community</a>
+      <a href="#our-story" class="mobile-link" data-i18n="nav_story">Our Story</a>
       <a href="#" class="mobile-link" data-i18n="nav_size">Size Guide</a>
       <a href="#" class="mobile-link" data-i18n="nav_contact">Contact</a>
     </div>
@@ -447,6 +600,71 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="strip-item">
     <span class="strip-glyph">𓃭𓈖𓏏𓅱</span>
     <span class="strip-meaning" data-i18n="glyph_4">Heart of Kings</span>
+  </div>
+</div>
+
+<!-- WATCH OUR STORY -->
+<section class="video-story" id="our-story">
+  <div class="section-header reveal" style="margin-bottom:30px">
+    <p class="section-label" data-i18n="story_label">Exclusive Offer</p>
+    <h2 class="section-title" data-i18n="story_title">Watch Our Story & Get 10% Off</h2>
+    <p class="section-desc" data-i18n="story_desc">Watch our journey and unlock a special discount code</p>
+  </div>
+  <div class="video-container" id="videoContainer">
+    <div class="video-poster" id="videoPoster">
+      <img src="images/story-poster.jpg" alt="Watch Our Story">
+    </div>
+    <button class="video-play-btn" id="videoPlayBtn" aria-label="Play video">
+      <svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>
+    </button>
+    <video id="storyVideo" preload="metadata" playsinline poster="images/story-poster.jpg">
+      <source src="videos/story.mp4" type="video/mp4">
+    </video>
+    <div class="video-progress" id="videoProgress" style="width:0%"></div>
+  </div>
+  <div style="text-align:center">
+    <div class="video-discount-badge reveal">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span data-i18n="story_badge">Watch till the end to unlock your reward</span>
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE VIDEO FULLSCREEN -->
+<div class="video-mobile-fullscreen" id="videoMobileFS">
+  <div class="rotate-prompt" id="rotatePrompt">
+    <svg class="rotate-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5">
+      <rect x="4" y="2" width="16" height="20" rx="2"/>
+      <path d="M12 18h.01"/>
+    </svg>
+    <p data-i18n="rotate_title">Rotate Your Phone</p>
+    <p class="rotate-sub" data-i18n="rotate_sub">For the best experience, turn your phone sideways</p>
+    <button class="skip-rotate" id="skipRotate" data-i18n="rotate_skip">Watch Anyway</button>
+  </div>
+  <video id="storyVideoMobile" playsinline>
+    <source src="videos/story.mp4" type="video/mp4">
+  </video>
+  <button class="vfs-close" id="vfsClose">&times;</button>
+  <div class="vfs-progress" id="vfsProgress" style="width:0%"></div>
+</div>
+
+<!-- DISCOUNT POPUP -->
+<div class="discount-popup" id="discountPopup">
+  <div class="discount-popup-overlay" id="discountPopupOverlay"></div>
+  <div class="discount-popup-content">
+    <button class="discount-popup-close" id="discountPopupClose">&times;</button>
+    <div class="discount-confetti" id="discountConfetti"></div>
+    <div class="discount-popup-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <div class="discount-percent">10%</div>
+    <h3 data-i18n="discount_title">You Earned It!</h3>
+    <p class="discount-popup-sub" data-i18n="discount_sub">Thank you for watching our story. Here's your exclusive discount code:</p>
+    <div class="discount-code-box">
+      <span class="discount-code">PLUZE10</span>
+      <button class="discount-copy-btn" id="discountCopyBtn" data-i18n="discount_copy">Copy</button>
+    </div>
+    <button class="discount-popup-cta" id="discountShopBtn" data-i18n="discount_cta">Shop Now with 10% Off</button>
   </div>
 </div>
 
@@ -764,6 +982,106 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 </div>
 
+<!-- CHECKOUT PAGE -->
+<div class="checkout-page" id="checkoutPage">
+  <div class="checkout-header">
+    <button class="checkout-back" id="checkoutBack">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span data-i18n="back_to_cart">Back to Cart</span>
+    </button>
+    <h2 data-i18n="checkout_title">Checkout</h2>
+    <div style="width:80px"></div>
+  </div>
+  <div class="checkout-body" id="checkoutBody">
+    <div class="checkout-form-section">
+      <div class="checkout-form-group">
+        <h3 data-i18n="checkout_contact">Contact Information</h3>
+        <div class="form-row">
+          <input class="checkout-input" type="email" placeholder="Email address" data-i18n-placeholder="checkout_email" id="checkEmail">
+        </div>
+        <div class="form-row">
+          <input class="checkout-input" type="tel" placeholder="Phone number" data-i18n-placeholder="checkout_phone" id="checkPhone">
+        </div>
+      </div>
+      <div class="checkout-form-group">
+        <h3 data-i18n="checkout_shipping">Shipping Address</h3>
+        <div class="form-row two-col">
+          <input class="checkout-input" type="text" placeholder="First name" data-i18n-placeholder="checkout_fname" id="checkFname">
+          <input class="checkout-input" type="text" placeholder="Last name" data-i18n-placeholder="checkout_lname" id="checkLname">
+        </div>
+        <div class="form-row">
+          <input class="checkout-input" type="text" placeholder="Address" data-i18n-placeholder="checkout_address" id="checkAddress">
+        </div>
+        <div class="form-row two-col">
+          <input class="checkout-input" type="text" placeholder="City" data-i18n-placeholder="checkout_city" id="checkCity">
+          <select class="checkout-select" id="checkGov">
+            <option value="" disabled selected data-i18n="checkout_gov">Governorate</option>
+            <option value="cairo">Cairo</option>
+            <option value="giza">Giza</option>
+            <option value="alex">Alexandria</option>
+            <option value="mansoura">Mansoura</option>
+            <option value="tanta">Tanta</option>
+            <option value="aswan">Aswan</option>
+            <option value="luxor">Luxor</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <input class="checkout-input" type="text" placeholder="Postal code (optional)" data-i18n-placeholder="checkout_postal" id="checkPostal">
+        </div>
+      </div>
+      <div class="checkout-form-group">
+        <h3 data-i18n="checkout_payment">Payment Method</h3>
+        <div class="checkout-payment-methods">
+          <label class="payment-option">
+            <input type="radio" name="payment" value="cod" checked>
+            <span class="payment-radio"></span>
+            <span class="payment-label" data-i18n="payment_cod">Cash on Delivery</span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="card">
+            <span class="payment-radio"></span>
+            <span class="payment-label" data-i18n="payment_card">Credit / Debit Card</span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="wallet">
+            <span class="payment-radio"></span>
+            <span class="payment-label" data-i18n="payment_wallet">Mobile Wallet</span>
+          </label>
+        </div>
+      </div>
+      <div class="checkout-form-group">
+        <h3 data-i18n="checkout_discount_label">Discount Code</h3>
+        <div class="checkout-discount-row">
+          <input class="checkout-input" type="text" placeholder="Enter code" data-i18n-placeholder="checkout_code_placeholder" id="checkDiscountInput">
+          <button id="applyDiscountBtn" data-i18n="checkout_apply">Apply</button>
+        </div>
+        <div id="discountAppliedTag" class="discount-applied-tag" style="display:none">
+          <span>&#10003;</span>
+          <span id="discountAppliedText">PLUZE10 — 10% off applied</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="checkout-summary" id="checkoutSummary">
+        <h3 data-i18n="order_summary">Order Summary</h3>
+        <div class="checkout-summary-items" id="checkoutItems"></div>
+        <div class="checkout-totals" id="checkoutTotals"></div>
+        <button class="checkout-place-btn" id="placeOrderBtn" data-i18n="place_order">Place Order</button>
+      </div>
+    </div>
+  </div>
+  <div class="order-confirmation" id="orderConfirmation">
+    <div class="order-check">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2 data-i18n="order_confirmed">Order Confirmed!</h2>
+    <p data-i18n="order_confirmed_msg">Thank you for your order. You'll receive a confirmation email shortly with tracking details.</p>
+    <div class="order-number" id="orderNumber">ORDER #PLZ-2026-0001</div>
+    <button class="order-continue-btn" id="continueShoppingBtn" data-i18n="continue_shopping">Continue Shopping</button>
+  </div>
+</div>
+
 <script>
 let currentLang = 'en';
 const i18n = {
@@ -796,7 +1114,42 @@ const i18n = {
     modal_size:'المقاس',modal_qty:'الكمية',modal_add:'أضف للسلة',
     modal_f1:'قطن مصري فاخر ١٠٠٪',modal_f2:'قصة أوفرسايز مريحة',modal_f3:'تفاصيل بطابع فرعوني',modal_f4:'مغسول مسبقاً للنعومة',
     modal_qty_label:'الكمية',
-    f_sale:'تخفيضات'
+    f_sale:'تخفيضات',
+    story_label:'عرض حصري',
+    story_title:'شاهد قصتنا واحصل على خصم ١٠٪',
+    story_desc:'شاهد رحلتنا واحصل على كود خصم حصري',
+    story_badge:'شاهد للنهاية لفتح مكافأتك',
+    rotate_title:'اقلب موبايلك',
+    rotate_sub:'للحصول على أفضل تجربة، اقلب الموبايل بالعرض',
+    rotate_skip:'شاهد كده',
+    discount_title:'مبروك عليك!',
+    discount_sub:'شكراً إنك شاهدت قصتنا. هنا كود الخصم الحصري بتاعك:',
+    discount_copy:'نسخ',
+    discount_cta:'تسوّق الآن بخصم ١٠٪',
+    back_to_cart:'رجوع للسلة',
+    checkout_title:'إتمام الشراء',
+    checkout_contact:'بيانات التواصل',
+    checkout_email:'البريد الإلكتروني',
+    checkout_phone:'رقم الموبايل',
+    checkout_shipping:'عنوان الشحن',
+    checkout_fname:'الاسم الأول',
+    checkout_lname:'اسم العائلة',
+    checkout_address:'العنوان',
+    checkout_city:'المدينة',
+    checkout_gov:'المحافظة',
+    checkout_postal:'الرمز البريدي (اختياري)',
+    checkout_payment:'طريقة الدفع',
+    payment_cod:'الدفع عند الاستلام',
+    payment_card:'بطاقة ائتمان / خصم',
+    payment_wallet:'محفظة إلكترونية',
+    checkout_discount_label:'كود الخصم',
+    checkout_code_placeholder:'أدخل الكود',
+    checkout_apply:'تطبيق',
+    order_summary:'ملخص الطلب',
+    place_order:'تأكيد الطلب',
+    order_confirmed:'تم تأكيد الطلب!',
+    order_confirmed_msg:'شكراً لطلبك. هتوصلك رسالة تأكيد على الإيميل مع تفاصيل التتبع.',
+    continue_shopping:'واصل التسوّق'
   }
 };
 const productsAr = [
@@ -1056,8 +1409,273 @@ document.addEventListener('keydown', e => {
     mobileMenu.classList.remove('open');
     cartDrawer.classList.remove('open');
     closeModal();
+    closeDiscountPopup();
+    closeMobileVideo();
   }
 });
+
+// ========== VIDEO STORY SECTION ==========
+const storyVideo = document.getElementById('storyVideo');
+const storyVideoMobile = document.getElementById('storyVideoMobile');
+const videoContainer = document.getElementById('videoContainer');
+const videoPoster = document.getElementById('videoPoster');
+const videoPlayBtn = document.getElementById('videoPlayBtn');
+const videoProgress = document.getElementById('videoProgress');
+const videoMobileFS = document.getElementById('videoMobileFS');
+const rotatePrompt = document.getElementById('rotatePrompt');
+const vfsProgress = document.getElementById('vfsProgress');
+let videoWatched = false;
+let discountUnlocked = false;
+
+function isMobile() { return window.innerWidth <= 768; }
+
+videoPlayBtn.onclick = function() {
+  if (isMobile()) {
+    openMobileVideo();
+  } else {
+    videoPoster.classList.add('hidden');
+    videoPlayBtn.classList.add('hidden');
+    storyVideo.play();
+  }
+};
+
+videoContainer.onclick = function(e) {
+  if (e.target === videoPlayBtn || videoPlayBtn.contains(e.target)) return;
+  if (isMobile()) return;
+  if (storyVideo.paused && videoPoster.classList.contains('hidden')) {
+    storyVideo.play();
+  } else if (!storyVideo.paused) {
+    storyVideo.pause();
+  }
+};
+
+storyVideo.addEventListener('timeupdate', function() {
+  if (storyVideo.duration) {
+    videoProgress.style.width = (storyVideo.currentTime / storyVideo.duration * 100) + '%';
+  }
+});
+
+storyVideo.addEventListener('ended', function() {
+  videoWatched = true;
+  videoProgress.style.width = '100%';
+  videoPoster.classList.remove('hidden');
+  videoPlayBtn.classList.remove('hidden');
+  setTimeout(showDiscountPopup, 500);
+});
+
+// Mobile fullscreen video
+function openMobileVideo() {
+  videoMobileFS.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  rotatePrompt.classList.remove('hidden');
+  storyVideoMobile.currentTime = 0;
+}
+
+document.getElementById('skipRotate').onclick = function() {
+  rotatePrompt.classList.add('hidden');
+  storyVideoMobile.play();
+};
+
+window.addEventListener('orientationchange', function() {
+  if (videoMobileFS.classList.contains('active')) {
+    rotatePrompt.classList.add('hidden');
+    storyVideoMobile.play();
+  }
+});
+
+if (screen.orientation) {
+  screen.orientation.addEventListener('change', function() {
+    if (videoMobileFS.classList.contains('active') && screen.orientation.type.includes('landscape')) {
+      rotatePrompt.classList.add('hidden');
+      storyVideoMobile.play();
+    }
+  });
+}
+
+storyVideoMobile.addEventListener('timeupdate', function() {
+  if (storyVideoMobile.duration) {
+    vfsProgress.style.width = (storyVideoMobile.currentTime / storyVideoMobile.duration * 100) + '%';
+  }
+});
+
+storyVideoMobile.addEventListener('ended', function() {
+  videoWatched = true;
+  closeMobileVideo();
+  setTimeout(showDiscountPopup, 500);
+});
+
+document.getElementById('vfsClose').onclick = closeMobileVideo;
+
+function closeMobileVideo() {
+  storyVideoMobile.pause();
+  videoMobileFS.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ========== DISCOUNT POPUP ==========
+function showDiscountPopup() {
+  if (discountUnlocked) return;
+  discountUnlocked = true;
+  const popup = document.getElementById('discountPopup');
+  popup.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  createConfetti();
+}
+
+function closeDiscountPopup() {
+  document.getElementById('discountPopup').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('discountPopupClose').onclick = closeDiscountPopup;
+document.getElementById('discountPopupOverlay').onclick = closeDiscountPopup;
+
+document.getElementById('discountCopyBtn').onclick = function() {
+  const btn = this;
+  navigator.clipboard.writeText('PLUZE10').then(function() {
+    btn.textContent = currentLang === 'ar' ? 'تم!' : 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = currentLang === 'ar' ? 'نسخ' : 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+};
+
+document.getElementById('discountShopBtn').onclick = function() {
+  closeDiscountPopup();
+  document.getElementById('new-arrivals').scrollIntoView({ behavior: 'smooth' });
+};
+
+function createConfetti() {
+  const container = document.getElementById('discountConfetti');
+  container.innerHTML = '';
+  const colors = ['#b8860b', '#d4b896', '#c4956a', '#8b7355', '#e8d5b7', '#1a1a1a'];
+  for (let i = 0; i < 50; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = Math.random() * 1.5 + 's';
+    piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+    piece.style.width = (6 + Math.random() * 6) + 'px';
+    piece.style.height = (6 + Math.random() * 6) + 'px';
+    if (Math.random() > 0.5) piece.style.borderRadius = '50%';
+    container.appendChild(piece);
+  }
+}
+
+// ========== CHECKOUT ==========
+let appliedDiscount = null;
+const checkoutPage = document.getElementById('checkoutPage');
+
+document.querySelector('.cart-checkout-btn').onclick = openCheckout;
+
+function openCheckout() {
+  cartDrawer.classList.remove('open');
+  if (cart.length === 0) return;
+  checkoutPage.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('checkoutBody').style.display = '';
+  document.getElementById('orderConfirmation').classList.remove('show');
+  renderCheckoutSummary();
+  if (discountUnlocked) {
+    document.getElementById('checkDiscountInput').value = 'PLUZE10';
+  }
+}
+
+document.getElementById('checkoutBack').onclick = function() {
+  checkoutPage.classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+function renderCheckoutSummary() {
+  const itemsEl = document.getElementById('checkoutItems');
+  const totalsEl = document.getElementById('checkoutTotals');
+  const isAr = currentLang === 'ar';
+  itemsEl.innerHTML = '';
+
+  cart.forEach(function(item) {
+    const pIdx = products.findIndex(function(p) { return p.id === item.id; });
+    const displayName = isAr && pIdx >= 0 ? productsAr[pIdx].name : item.name;
+    const sizeLabel = isAr ? 'المقاس' : 'Size';
+    const div = document.createElement('div');
+    div.className = 'checkout-item';
+    div.innerHTML =
+      '<div class="checkout-item-img"><img src="' + item.img + '" alt="' + displayName + '"></div>' +
+      '<div class="checkout-item-info"><p class="checkout-item-name">' + displayName + '</p>' +
+      '<p class="checkout-item-meta">' + sizeLabel + ': ' + item.size + ' &times; ' + item.qty + '</p></div>' +
+      '<span class="checkout-item-price">' + (item.price * item.qty).toLocaleString() + ' L.E</span>';
+    itemsEl.appendChild(div);
+  });
+
+  const subtotal = cart.reduce(function(s, c) { return s + c.price * c.qty; }, 0);
+  const shipping = subtotal >= 800 ? 0 : 60;
+  let discountAmount = 0;
+  if (appliedDiscount === 'PLUZE10') {
+    discountAmount = Math.round(subtotal * 0.1);
+  }
+  const total = subtotal - discountAmount + shipping;
+  const subtotalLabel = isAr ? 'المجموع الفرعي' : 'Subtotal';
+  const shippingLabel = isAr ? 'الشحن' : 'Shipping';
+  const shippingValue = shipping === 0 ? (isAr ? 'مجاني' : 'Free') : shipping.toLocaleString() + ' L.E';
+  const totalLabel = isAr ? 'الإجمالي' : 'Total';
+
+  let html = '<div class="row"><span>' + subtotalLabel + '</span><span>' + subtotal.toLocaleString() + ' L.E</span></div>';
+  if (discountAmount > 0) {
+    html += '<div class="row discount"><span>' + (isAr ? 'خصم ١٠٪' : '10% Discount') + '</span><span>-' + discountAmount.toLocaleString() + ' L.E</span></div>';
+  }
+  html += '<div class="row"><span>' + shippingLabel + '</span><span>' + shippingValue + '</span></div>';
+  html += '<div class="row total"><span>' + totalLabel + '</span><span>' + total.toLocaleString() + ' L.E</span></div>';
+  totalsEl.innerHTML = html;
+}
+
+document.getElementById('applyDiscountBtn').onclick = function() {
+  const code = document.getElementById('checkDiscountInput').value.trim().toUpperCase();
+  if (code === 'PLUZE10') {
+    appliedDiscount = 'PLUZE10';
+    const tag = document.getElementById('discountAppliedTag');
+    tag.style.display = 'inline-flex';
+    document.getElementById('discountAppliedText').textContent = currentLang === 'ar'
+      ? 'PLUZE10 — تم تطبيق خصم ١٠٪'
+      : 'PLUZE10 — 10% off applied';
+    renderCheckoutSummary();
+    showToast(currentLang === 'ar' ? 'تم تطبيق الكود بنجاح!' : 'Discount code applied!');
+  } else {
+    showToast(currentLang === 'ar' ? 'كود غير صالح' : 'Invalid discount code');
+  }
+};
+
+document.getElementById('placeOrderBtn').onclick = function() {
+  const email = document.getElementById('checkEmail').value.trim();
+  const phone = document.getElementById('checkPhone').value.trim();
+  const fname = document.getElementById('checkFname').value.trim();
+  const lname = document.getElementById('checkLname').value.trim();
+  const address = document.getElementById('checkAddress').value.trim();
+  const city = document.getElementById('checkCity').value.trim();
+  const gov = document.getElementById('checkGov').value;
+
+  if (!email || !phone || !fname || !lname || !address || !city || !gov) {
+    showToast(currentLang === 'ar' ? 'من فضلك أكمل كل البيانات' : 'Please fill in all required fields');
+    return;
+  }
+
+  const orderNum = 'PLZ-2026-' + String(Math.floor(1000 + Math.random() * 9000));
+  document.getElementById('orderNumber').textContent = (currentLang === 'ar' ? 'طلب رقم ' : 'ORDER #') + orderNum;
+  document.getElementById('checkoutBody').style.display = 'none';
+  document.getElementById('orderConfirmation').classList.add('show');
+  cart = [];
+  appliedDiscount = null;
+  updateCart();
+};
+
+document.getElementById('continueShoppingBtn').onclick = function() {
+  checkoutPage.classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('new-arrivals').scrollIntoView({ behavior: 'smooth' });
+};
+
+// ========== NAV LINK for Our Story ==========
 </script>
 </body>
 </html>
