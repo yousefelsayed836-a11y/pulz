@@ -341,13 +341,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 
 /* VIDEO STORY SECTION */
-.video-story{padding:80px 20px;background:var(--dark);position:relative;overflow:hidden}
-@media(min-width:768px){.video-story{padding:100px 60px}}
-.video-story .section-header{margin-bottom:40px}
+.video-story{padding:80px 0;background:var(--bg);position:relative;overflow:hidden}
+@media(min-width:768px){.video-story{padding:100px 0}}
+.video-story .section-header{margin-bottom:40px;padding:0 20px}
 .video-story .section-label{color:var(--gold)}
-.video-story .section-title{color:var(--cream)}
-.video-story .section-desc{color:rgba(255,255,255,.6)}
-.video-container{position:relative;max-width:900px;margin:0 auto;border-radius:8px;overflow:hidden;aspect-ratio:16/9;background:#000;cursor:pointer;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.video-story .section-title{color:var(--dark)}
+.video-story .section-desc{color:var(--text-light)}
+.video-container{position:relative;width:100%;margin:0 auto;overflow:hidden;aspect-ratio:16/9;background:#000;cursor:pointer;box-shadow:0 20px 60px rgba(0,0,0,.15)}
 .video-container video{width:100%;height:100%;object-fit:cover;display:block}
 .video-poster{position:absolute;inset:0;z-index:2;transition:opacity .5s var(--ease)}
 .video-poster img{width:100%;height:100%;object-fit:cover}
@@ -787,12 +787,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>
     </button>
     <div class="video-progress" id="videoProgress" style="width:0%"></div>
-  </div>
-  <div style="text-align:center">
-    <div class="video-discount-badge reveal">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <span data-i18n="story_badge">Watch till the end to unlock your reward</span>
-    </div>
   </div>
 </section>
 
