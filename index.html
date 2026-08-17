@@ -217,23 +217,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .newsletter-form button:hover{background:var(--gold)}
 
 /* FOOTER */
-.footer{color:var(--cream);padding:60px 20px 30px;position:relative;overflow:hidden}
-@media(min-width:768px){.footer{padding:80px 60px 30px}}
-.footer-top{display:grid;grid-template-columns:1fr;gap:40px;max-width:1400px;margin:0 auto 50px}
-@media(min-width:768px){.footer-top{grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}}
-.footer-brand p{font-size:13px;opacity:.6;line-height:1.7;margin-top:16px;max-width:280px}
-.footer-col h4{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;color:var(--gold)}
-.footer-col a{display:block;font-size:13px;opacity:.6;padding:5px 0;transition:opacity .3s;letter-spacing:.5px}
-.footer-col a:hover{opacity:1}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:1400px;margin:0 auto}
-@media(min-width:768px){.footer-bottom{flex-direction:row;justify-content:space-between}}
+.footer-blend{height:150px;background:linear-gradient(to bottom,var(--bg) 0%,#e0ddd8 20%,#b8c4cf 50%,#8ea3b5 75%,#6d8ba0 100%);margin-top:-1px}
+.footer{color:var(--cream);position:relative;overflow:hidden;padding:0}
+.footer-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(180px,30vw,340px) 20px 30px;gap:20px}
+.footer-brand{display:flex;flex-direction:column;align-items:center;gap:10px}
+.footer-brand p{font-size:13px;opacity:.7;letter-spacing:2px}
 .footer-copy{font-size:11px;opacity:.4;letter-spacing:1px}
-.footer-socials{display:flex;gap:20px}
-.footer-socials a{opacity:.5;transition:opacity .3s}
+.footer-socials{display:flex;gap:24px}
+.footer-socials a{opacity:.6;transition:opacity .3s}
 .footer-socials a:hover{opacity:1}
-.footer-socials svg{width:18px;height:18px}
-.footer-hieroglyphs{font-family:'Noto Sans Egyptian Hieroglyphs',sans-serif;text-align:center;margin-bottom:30px;font-size:18px;letter-spacing:10px;opacity:.12;position:relative;z-index:1}
-.footer-top,.footer-bottom{position:relative;z-index:1}
+.footer-socials svg{width:20px;height:20px}
 
 /* PRODUCT MODAL */
 .product-modal{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .3s var(--ease)}
@@ -266,8 +259,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* FOOTER BG */
 .footer-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
-.footer-bg img{width:100%;height:100%;object-fit:cover;object-position:center bottom}
-.footer-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,26,26,.3) 0%,rgba(26,26,26,.7) 40%,rgba(26,26,26,.9) 70%,rgba(26,26,26,.95) 100%)}
+.footer-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.footer-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,rgba(26,26,26,.15) 30%,rgba(26,26,26,.6) 60%,rgba(26,26,26,.85) 80%,rgba(26,26,26,.95) 100%)}
 
 /* TOAST */
 .toast{position:fixed;bottom:30px;right:30px;background:var(--dark);color:#fff;padding:16px 28px;border-radius:4px;font-size:13px;letter-spacing:1px;transform:translateY(100px);opacity:0;transition:all .4s var(--ease);z-index:4000;display:flex;align-items:center;gap:10px}
@@ -332,9 +325,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <!-- LOADER -->
 <div class="loader" id="loader">
-  <svg viewBox="0 0 160 32" fill="currentColor">
-    <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="8" fill="currentColor">PLUZ</text>
-    <g transform="translate(128,4)"><rect x="0" y="0" width="22" height="3.5" fill="currentColor"/><rect x="0" y="10" width="22" height="3.5" fill="currentColor"/><rect x="0" y="20" width="22" height="3.5" fill="currentColor"/></g>
+  <svg viewBox="0 0 115 32" fill="currentColor">
+    <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="3" fill="currentColor">PLUZ</text>
+    <g transform="translate(95,5)"><rect x="0" y="0" width="16" height="3" fill="currentColor"/><rect x="0" y="9" width="16" height="3" fill="currentColor"/><rect x="0" y="18" width="16" height="3" fill="currentColor"/></g>
   </svg>
 </div>
 
@@ -352,9 +345,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
   <div class="header-center">
     <a href="#" class="header-logo">
-      <svg viewBox="0 0 160 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="8" fill="currentColor">PLUZ</text>
-        <g transform="translate(128,4)"><rect x="0" y="0" width="22" height="3.5" fill="currentColor"/><rect x="0" y="10" width="22" height="3.5" fill="currentColor"/><rect x="0" y="20" width="22" height="3.5" fill="currentColor"/></g>
+      <svg viewBox="0 0 115 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="3" fill="currentColor">PLUZ</text>
+        <g transform="translate(95,5)"><rect x="0" y="0" width="16" height="3" fill="currentColor"/><rect x="0" y="9" width="16" height="3" fill="currentColor"/><rect x="0" y="18" width="16" height="3" fill="currentColor"/></g>
       </svg>
     </a>
   </div>
@@ -705,51 +698,26 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </section>
 
 <!-- FOOTER WITH PYRAMIDS -->
+<div class="footer-blend"></div>
 <footer class="footer">
   <div class="footer-bg">
     <img src="images/pyramids-footer.jpg" alt="Pyramids">
   </div>
-  <div class="footer-hieroglyphs">𓂀 𓃭 𓋴 𓁹 𓂋 𓇳 𓅃 𓆣 𓂀 𓃭 𓋴 𓁹 𓂋 𓇳 𓅃 𓆣</div>
-  <div class="footer-top">
+  <div class="footer-content">
     <div class="footer-brand">
-      <svg viewBox="0 0 160 32" fill="currentColor" height="24">
-        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="8" fill="currentColor">PLUZ</text>
-        <g transform="translate(128,4)"><rect x="0" y="0" width="22" height="3.5" fill="currentColor"/><rect x="0" y="10" width="22" height="3.5" fill="currentColor"/><rect x="0" y="20" width="22" height="3.5" fill="currentColor"/></g>
+      <svg viewBox="0 0 115 32" fill="currentColor" height="24">
+        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="3" fill="currentColor">PLUZ</text>
+        <g transform="translate(95,5)"><rect x="0" y="0" width="16" height="3" fill="currentColor"/><rect x="0" y="9" width="16" height="3" fill="currentColor"/><rect x="0" y="18" width="16" height="3" fill="currentColor"/></g>
       </svg>
-      <p>Street Culture. Egyptian Soul. Born in Cairo, worn worldwide. Every thread tells a story that's 5,000 years in the making.</p>
+      <p data-i18n="footer_tagline">Street Culture. Egyptian Soul.</p>
     </div>
-    <div class="footer-col">
-      <h4 data-i18n="f_shop">Shop</h4>
-      <a href="#" data-i18n="f_new">New Arrivals</a>
-      <a href="#" data-i18n="f_tees">T-Shirts</a>
-      <a href="#" data-i18n="f_shirts">Shirts</a>
-      <a href="#" data-i18n="f_bundles">Bundles</a>
-      <a href="#" data-i18n="f_sale">Sale</a>
-    </div>
-    <div class="footer-col">
-      <h4 data-i18n="f_help">Help</h4>
-      <a href="#" data-i18n="f_size">Size Guide</a>
-      <a href="#" data-i18n="f_shipping">Shipping</a>
-      <a href="#" data-i18n="f_returns">Returns</a>
-      <a href="#" data-i18n="f_faq">FAQ</a>
-      <a href="#" data-i18n="f_contact">Contact Us</a>
-    </div>
-    <div class="footer-col">
-      <h4 data-i18n="f_company">Company</h4>
-      <a href="#" data-i18n="f_story">Our Story</a>
-      <a href="#" data-i18n="f_careers">Careers</a>
-      <a href="#" data-i18n="f_press">Press</a>
-      <a href="#" data-i18n="f_sustain">Sustainability</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2026 PLUZE. All rights reserved.</p>
     <div class="footer-socials">
       <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg></a>
       <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.47a8.16 8.16 0 003.76.92V7a4.85 4.85 0 01-0-.31z"/></svg></a>
       <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
       <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
     </div>
+    <p class="footer-copy">&copy; 2026 PLUZE</p>
   </div>
 </footer>
 
@@ -828,10 +796,7 @@ const i18n = {
     newsletter_title:'انضم للعيلة',
     email_placeholder:'بريدك الإلكتروني',subscribe:'اشترك',
     quick_view:'عرض سريع',view_look:'شوف اللوك',
-    f_shop:'تسوّق',f_help:'مساعدة',f_company:'الشركة',
-    f_new:'وصل حديثاً',f_tees:'تيشيرتات',f_shirts:'قمصان',f_bundles:'باقات',f_sale:'تخفيضات',
-    f_size:'دليل المقاسات',f_shipping:'الشحن',f_returns:'الإرجاع',f_faq:'أسئلة شائعة',f_contact:'تواصل معنا',
-    f_story:'قصتنا',f_careers:'وظائف',f_press:'صحافة',f_sustain:'الاستدامة',
+    footer_tagline:'ثقافة شارع. روح مصرية.',
     modal_size:'المقاس',modal_qty:'الكمية',modal_add:'أضف للسلة',
     modal_f1:'قطن مصري فاخر ١٠٠٪',modal_f2:'قصة أوفرسايز مريحة',modal_f3:'تفاصيل بطابع فرعوني',modal_f4:'مغسول مسبقاً للنعومة',
     modal_qty_label:'الكمية',
