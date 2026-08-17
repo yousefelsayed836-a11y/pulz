@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+@font-face{font-family:'Noto Sans Egyptian Hieroglyphs';src:url('fonts/noto-hieroglyphs.ttf') format('truetype');font-display:swap}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --sand:#d4b896;--cream:#f5f5f5;--dark:#1a1a1a;--gold:#b8860b;
@@ -15,8 +16,8 @@
   --bg:#ffffff;--text:#1a1a1a;--text-light:#6b5e50;
   --header-h:70px;--ease:cubic-bezier(.4,0,.2,1);
 }
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:'DM Sans',system-ui,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;line-height:1.6}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;line-height:1.6;width:100%}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
@@ -45,9 +46,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 .search-btn{display:none}
 @media(min-width:1024px){.search-btn{display:block}}
+@media(max-width:480px){.header{padding:0 16px}.header-right{gap:14px}}
 
 /* MOBILE MENU */
-.mobile-menu{position:fixed;top:0;left:0;width:100%;height:100%;z-index:2000;pointer-events:none}
+.mobile-menu{position:fixed;top:0;left:0;width:100%;height:100%;z-index:2000;pointer-events:none;overflow:hidden}
 .mobile-menu.open{pointer-events:auto}
 .mobile-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .4s var(--ease)}
 .mobile-menu.open .mobile-overlay{opacity:1}
@@ -61,7 +63,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .mobile-bottom p{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light)}
 
 /* CART DRAWER */
-.cart-drawer{position:fixed;top:0;right:0;width:min(440px,100vw);height:100%;z-index:2000;pointer-events:none}
+.cart-drawer{position:fixed;top:0;right:0;width:min(440px,100vw);height:100%;z-index:2000;pointer-events:none;overflow:hidden}
 .cart-drawer.open{pointer-events:auto}
 .cart-drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .4s var(--ease);z-index:1999}
 .cart-drawer.open .cart-drawer-overlay{opacity:1;pointer-events:auto}
@@ -100,7 +102,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .hero-img.desktop{display:none}
 .hero-img.mobile{display:block}
 @media(min-width:768px){.hero-img.desktop{display:block}.hero-img.mobile{display:none}}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.15) 0%,rgba(0,0,0,.05) 40%,rgba(0,0,0,.4) 85%,var(--bg) 100%)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.15) 0%,rgba(0,0,0,.05) 40%,rgba(0,0,0,.4) 100%)}
 .hero-content{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);text-align:center;color:#fff;width:90%;max-width:700px}
 .hero-tagline{font-size:13px;letter-spacing:6px;text-transform:uppercase;margin-bottom:16px;opacity:.9}
 .hero-title{font-family:'Cinzel',serif;font-size:clamp(28px,5vw,52px);letter-spacing:6px;text-transform:uppercase;line-height:1.2;margin-bottom:12px;text-shadow:0 2px 20px rgba(0,0,0,.3)}
@@ -114,12 +116,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 
 /* PHARAONIC DIVIDER */
-.pharaonic-divider{text-align:center;padding:8px 0;color:var(--gold);font-size:20px;letter-spacing:12px;opacity:.4}
+.pharaonic-divider{font-family:'Noto Sans Egyptian Hieroglyphs',sans-serif;text-align:center;padding:8px 0;color:var(--gold);font-size:20px;letter-spacing:12px;opacity:.4}
 
 /* PHARAONIC QUOTE */
-.pharaonic-quote{text-align:center;padding:60px 20px 40px;background:var(--bg)}
+.pharaonic-quote{text-align:center;padding:60px 20px 40px;background:var(--bg);overflow:hidden}
 .pharaonic-quote-inner{max-width:700px;margin:0 auto}
-.hieroglyphs-text{font-size:clamp(24px,4vw,40px);letter-spacing:10px;color:var(--gold);opacity:.6;margin-bottom:20px;line-height:1.5}
+.hieroglyphs-text{font-family:'Noto Sans Egyptian Hieroglyphs',sans-serif;font-size:clamp(18px,4vw,40px);letter-spacing:clamp(2px,1.5vw,10px);color:var(--gold);opacity:.6;margin-bottom:20px;line-height:1.5}
 .hieroglyphs-translate{font-family:'Cinzel',serif;font-size:clamp(15px,2vw,20px);letter-spacing:2px;color:var(--dark);line-height:1.6;font-style:italic}
 .hieroglyphs-source{font-size:12px;color:var(--text-light);letter-spacing:1.5px;margin-top:12px;opacity:.7}
 .pharaonic-quote-dark{background:var(--dark);padding:50px 20px}
@@ -131,7 +133,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .pharaonic-strip{display:flex;align-items:center;justify-content:center;gap:24px;padding:40px 20px;flex-wrap:wrap}
 @media(min-width:768px){.pharaonic-strip{gap:40px;padding:50px 40px}}
 .strip-item{display:flex;flex-direction:column;align-items:center;gap:6px}
-.strip-glyph{font-size:clamp(20px,3vw,28px);color:var(--gold);opacity:.5;letter-spacing:4px}
+.strip-glyph{font-family:'Noto Sans Egyptian Hieroglyphs',sans-serif;font-size:clamp(20px,3vw,28px);color:var(--gold);opacity:.5;letter-spacing:4px}
 .strip-meaning{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light)}
 .strip-dot{font-size:16px;color:var(--gold);opacity:.3}
 
@@ -145,11 +147,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .section-title{font-family:'Cinzel',serif;font-size:clamp(24px,3.5vw,38px);letter-spacing:4px;text-transform:uppercase;color:var(--dark)}
 .section-desc{font-size:14px;color:var(--text-light);margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;letter-spacing:.5px}
 
-/* PRODUCT GRID */
-.products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:1400px;margin:0 auto}
-@media(min-width:768px){.products-grid{grid-template-columns:repeat(3,1fr);gap:30px}}
-@media(min-width:1200px){.products-grid{grid-template-columns:repeat(4,1fr);gap:30px}}
-.product-card{position:relative;cursor:pointer}
+/* PRODUCT SCROLL ROW */
+.products-grid{display:flex;gap:20px;max-width:100%;overflow-x:auto;padding:0 20px 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.products-grid::-webkit-scrollbar{display:none}
+@media(min-width:768px){.products-grid{gap:24px;padding:0 60px 20px}}
+.product-card{position:relative;cursor:pointer;min-width:260px;max-width:280px;flex-shrink:0;scroll-snap-align:start}
+@media(min-width:768px){.product-card{min-width:280px;max-width:300px}}
 .product-card:hover .product-img img{transform:scale(1.04)}
 .product-img{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:4px;background:var(--papyrus)}
 .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
@@ -168,17 +171,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .product-swatch{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(0,0,0,.1);cursor:pointer;transition:all .2s}
 .product-swatch:hover,.product-swatch.active{border-color:var(--dark);transform:scale(1.15)}
 
-/* CAMPAIGN BANNER */
-.campaign{position:relative;height:70vh;min-height:400px;overflow:hidden;margin:0}
-.campaign img{width:100%;height:100%;object-fit:cover}
-.campaign-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.55) 0%,rgba(0,0,0,.1) 100%);display:flex;align-items:center;padding:60px}
-@media(min-width:768px){.campaign-overlay{padding:60px 100px}}
-.campaign-content{color:#fff;max-width:500px}
-.campaign-label{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.campaign-title{font-family:'Cinzel',serif;font-size:clamp(28px,4vw,44px);letter-spacing:4px;text-transform:uppercase;line-height:1.2;margin-bottom:16px}
-.campaign-text{font-size:14px;opacity:.85;line-height:1.7;margin-bottom:28px;letter-spacing:.3px}
-.campaign-btn{display:inline-block;padding:14px 40px;background:#fff;color:var(--dark);font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;transition:all .3s var(--ease)}
-.campaign-btn:hover{background:var(--gold);color:#fff}
 
 /* CATEGORIES */
 .categories-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:1400px;margin:0 auto}
@@ -187,10 +179,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 @media(min-width:768px){.category-card{aspect-ratio:4/5}}
 .category-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
 .category-card:hover img{transform:scale(1.06)}
-.category-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,rgba(0,0,0,.05) 50%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:30px;transition:background .4s}
-.category-card:hover .category-overlay{background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 50%)}
-.category-name{font-family:'Cinzel',serif;color:#fff;font-size:18px;letter-spacing:4px;text-transform:uppercase;margin-bottom:8px}
-.category-count{color:rgba(255,255,255,.7);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.category-overlay{position:absolute;inset:0;background:rgba(0,0,0,.15);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;transition:all .4s}
+.category-card:hover .category-overlay{backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);background:rgba(0,0,0,.25)}
+.category-name{font-family:'Cinzel',serif;color:#fff;font-size:20px;letter-spacing:5px;text-transform:uppercase;margin-bottom:8px;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+.category-count{color:rgba(255,255,255,.8);font-size:11px;letter-spacing:2px;text-transform:uppercase}
 
 /* LOOKBOOK */
 .lookbook-grid{display:grid;grid-template-columns:1fr;gap:4px;max-width:1600px;margin:0 auto}
@@ -240,7 +232,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .footer-socials a{opacity:.5;transition:opacity .3s}
 .footer-socials a:hover{opacity:1}
 .footer-socials svg{width:18px;height:18px}
-.footer-hieroglyphs{text-align:center;margin-bottom:30px;font-size:18px;letter-spacing:10px;opacity:.12}
+.footer-hieroglyphs{font-family:'Noto Sans Egyptian Hieroglyphs',sans-serif;text-align:center;margin-bottom:30px;font-size:18px;letter-spacing:10px;opacity:.12}
 
 /* PRODUCT MODAL */
 .product-modal{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .3s var(--ease)}
@@ -300,11 +292,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* RTL SUPPORT */
 [dir="rtl"] body{font-family:'Cairo',system-ui,sans-serif}
-[dir="rtl"] .cinzel,[dir="rtl"] .section-title,[dir="rtl"] .campaign-title,
+[dir="rtl"] .cinzel,[dir="rtl"] .section-title,
 [dir="rtl"] .newsletter-title,[dir="rtl"] .category-name,[dir="rtl"] .hero-title,
 [dir="rtl"] .product-name,[dir="rtl"] .modal-name,[dir="rtl"] .cart-header h3,
 [dir="rtl"] .footer-col h4,[dir="rtl"] .product-quick,
-[dir="rtl"] .hero-cta span,[dir="rtl"] .campaign-btn,[dir="rtl"] .cart-checkout-btn,
+[dir="rtl"] .hero-cta span,[dir="rtl"] .cart-checkout-btn,
 [dir="rtl"] .modal-add-btn,[dir="rtl"] .newsletter-form button,
 [dir="rtl"] .header-nav a,[dir="rtl"] .mobile-links a,
 [dir="rtl"] .lookbook-hover span,[dir="rtl"] .cart-item-name,
@@ -321,12 +313,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 [dir="rtl"] .product-badge{left:auto;right:12px}
 [dir="rtl"] .product-wishlist{right:auto;left:12px}
 [dir="rtl"] .product-price .old{margin-left:0;margin-right:8px}
-[dir="rtl"] .campaign-overlay{direction:rtl}
 [dir="rtl"] .footer-brand p,[dir="rtl"] .footer-col a,[dir="rtl"] .modal-desc{direction:rtl;text-align:right}
 [dir="rtl"] .cart-item{direction:rtl}
 [dir="rtl"] .cart-item-remove{align-self:flex-start}
+[dir="rtl"] .products-grid{direction:rtl}
 [dir="rtl"] .scroll-top{left:auto;right:30px}
 [dir="rtl"] .toast{right:auto;left:30px}
+[dir="rtl"] .section-header{direction:rtl}
+[dir="rtl"] .hero-content{direction:rtl}
+[dir="rtl"] .newsletter{direction:rtl}
+[dir="rtl"] .pharaonic-quote{direction:rtl}
+[dir="rtl"] .strip-meaning{direction:rtl}
 
 /* LOADING SCREEN */
 .loader{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s var(--ease)}
@@ -339,9 +336,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <!-- LOADER -->
 <div class="loader" id="loader">
-  <svg viewBox="0 0 180 32" fill="currentColor">
-    <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZ</text>
-    <g transform="translate(145,5)">
+  <svg viewBox="0 0 210 32" fill="currentColor">
+    <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZE</text>
+    <g transform="translate(170,5)">
       <rect x="0" y="0" width="22" height="4" fill="currentColor"/>
       <rect x="0" y="9.5" width="22" height="4" fill="currentColor"/>
       <rect x="0" y="19" width="22" height="4" fill="currentColor"/>
@@ -363,9 +360,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
   <div class="header-center">
     <a href="#" class="header-logo">
-      <svg viewBox="0 0 180 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZ</text>
-        <g transform="translate(145,5)">
+      <svg viewBox="0 0 210 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZE</text>
+        <g transform="translate(170,5)">
           <rect x="0" y="0" width="22" height="4" fill="currentColor"/>
           <rect x="0" y="9.5" width="22" height="4" fill="currentColor"/>
           <rect x="0" y="19" width="22" height="4" fill="currentColor"/>
@@ -608,17 +605,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 </section>
 
-<!-- CAMPAIGN BANNER -->
-<section class="campaign">
-  <img src="images/community-4.jpg" alt="PLUZE Campaign" loading="lazy">
-  <div class="campaign-overlay">
-    <div class="campaign-content reveal">
-      <p class="campaign-label">𓇳 The Pharaonic Collection</p>
-      <h2 class="campaign-title cinzel" data-i18n="campaign_title">Wear Your Story</h2>
-      <a href="#new-arrivals" class="campaign-btn" data-i18n="campaign_btn">Explore Now</a>
-    </div>
-  </div>
-</section>
 
 <!-- CATEGORIES -->
 <section class="section" id="categories">
@@ -745,9 +731,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="footer-hieroglyphs">𓂀 𓃭 𓋴 𓁹 𓂋 𓇳 𓅃 𓆣 𓂀 𓃭 𓋴 𓁹 𓂋 𓇳 𓅃 𓆣</div>
   <div class="footer-top">
     <div class="footer-brand">
-      <svg viewBox="0 0 180 32" fill="currentColor" height="24">
-        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZ</text>
-        <g transform="translate(145,5)"><rect x="0" y="0" width="22" height="4" fill="currentColor"/><rect x="0" y="9.5" width="22" height="4" fill="currentColor"/><rect x="0" y="19" width="22" height="4" fill="currentColor"/></g>
+      <svg viewBox="0 0 210 32" fill="currentColor" height="24">
+        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZE</text>
+        <g transform="translate(170,5)"><rect x="0" y="0" width="22" height="4" fill="currentColor"/><rect x="0" y="9.5" width="22" height="4" fill="currentColor"/><rect x="0" y="19" width="22" height="4" fill="currentColor"/></g>
       </svg>
       <p>Street Culture. Egyptian Soul. Born in Cairo, worn worldwide. Every thread tells a story that's 5,000 years in the making.</p>
     </div>
@@ -844,7 +830,6 @@ const i18n = {
     nav_new:'جديد',nav_shop:'تسوّق',nav_lookbook:'لوك بوك',nav_story:'قصتنا',
     nav_shop_all:'تسوّق الكل',nav_community:'المجتمع',nav_size:'دليل المقاسات',nav_contact:'تواصل معنا',
     your_cart:'سلة التسوق',cart_empty:'سلتك فارغة',subtotal:'المجموع',checkout:'إتمام الشراء',
-    campaign_title:'البس حكايتك',campaign_btn:'اكتشف الآن',
     shop_category:'تسوّق حسب الفئة',
     cat_tees:'تيشيرتات',cat_tees_n:'١٢ منتج',cat_shirts:'قمصان',cat_shirts_n:'٨ منتجات',cat_bundles:'باقات',cat_bundles_n:'٤ منتجات',
     lookbook:'لوك بوك',
@@ -897,6 +882,20 @@ const products = [
 let cart = [];
 let modalQty = 1;
 let currentProduct = null;
+
+// LOAD DASHBOARD IMAGES
+(function(){
+  const saved = JSON.parse(localStorage.getItem('pluze_images') || '{}');
+  if (saved.heroDesktop) document.querySelector('.hero-img.desktop img').src = saved.heroDesktop;
+  if (saved.heroMobile) document.querySelector('.hero-img.mobile img').src = saved.heroMobile;
+  document.querySelectorAll('.product-card').forEach((card, i) => {
+    if (saved['product_' + i]) {
+      const img = card.querySelector('.product-img img');
+      if (img) img.src = saved['product_' + i];
+      products[i].img = saved['product_' + i];
+    }
+  });
+})();
 
 // LOADER
 window.addEventListener('load', () => {
