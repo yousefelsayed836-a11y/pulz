@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLUZE — Product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --sand:#d4b896;--cream:#f5f5f5;--dark:#1a1a1a;--gold:#b8860b;
+  --terracotta:#c4956a;--stone:#8b7355;--papyrus:#f7f6f3;
+  --bg:#ffffff;--text:#1a1a1a;--text-light:#6b5e50;
+  --header-h:70px;--ease:cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+.cinzel{font-family:'Cinzel',serif}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;width:100%;z-index:1000;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 1px 20px rgba(0,0,0,.06);direction:ltr}
+.header-back{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);transition:color .3s;font-family:'Cinzel',serif}
+.header-back:hover{color:var(--gold)}
+.header-back svg{width:18px;height:18px;flex-shrink:0}
+.brand-logo{height:20px;width:auto;display:block}
+.header-right{display:flex;align-items:center;gap:16px}
+.header-cart-btn{position:relative;width:22px;height:22px;color:var(--dark)}
+.header-cart-btn svg{width:22px;height:22px}
+.cart-count{position:absolute;top:-6px;right:-8px;background:var(--gold);color:#fff;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;display:none}
+.cart-count.show{display:flex}
+
+/* BREADCRUMB */
+.breadcrumb{padding:calc(var(--header-h) + 24px) 24px 0;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);display:flex;align-items:center;gap:8px}
+.breadcrumb a{color:var(--text-light);transition:color .3s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--dark)}
+
+/* PRODUCT PAGE */
+.product-page{max-width:1200px;margin:0 auto;padding:40px 24px 80px;display:grid;grid-template-columns:1fr;gap:40px}
+@media(min-width:768px){.product-page{grid-template-columns:1fr 1fr;gap:60px;padding:40px 60px 100px}}
+
+/* GALLERY */
+.product-gallery{position:relative}
+.product-gallery-main{aspect-ratio:3/4;border-radius:6px;overflow:hidden;background:var(--papyrus)}
+.product-gallery-main img{width:100%;height:100%;object-fit:cover}
+.product-badge{display:inline-block;background:var(--dark);color:#fff;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:2px;margin-top:16px}
+
+/* PRODUCT DETAIL */
+.product-detail{display:flex;flex-direction:column;gap:0}
+@media(min-width:768px){.product-detail{padding-top:20px}}
+.product-cat-link{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.product-cat-link::before,.product-cat-link::after{content:'';width:20px;height:1px;background:var(--gold);opacity:.5}
+.product-title{font-family:'Cinzel',serif;font-size:clamp(22px,3vw,32px);letter-spacing:3px;text-transform:uppercase;color:var(--dark);line-height:1.2;margin-bottom:16px}
+.product-price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:24px}
+.product-price-main{font-size:24px;font-weight:700;color:var(--dark)}
+.product-price-old{font-size:15px;text-decoration:line-through;color:var(--text-light);font-weight:400}
+.product-divider{width:40px;height:1px;background:var(--sand);margin-bottom:24px}
+.product-desc{font-size:14px;color:var(--text-light);line-height:1.8;margin-bottom:32px}
+
+/* SIZE */
+.size-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:12px;font-family:'Cinzel',serif}
+.size-grid{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.size-btn{width:48px;height:48px;border:1px solid rgba(0,0,0,.15);border-radius:2px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--dark);transition:all .25s;font-family:'DM Sans',sans-serif}
+.size-btn:hover{border-color:var(--dark)}
+.size-btn.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+
+/* COLORS */
+.colors-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:12px;font-family:'Cinzel',serif}
+.colors-row{display:flex;gap:10px;margin-bottom:32px}
+.color-dot{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.color-dot.active{border-color:var(--dark);transform:scale(1.15)}
+.color-dot:hover{transform:scale(1.1)}
+
+/* ADD TO CART */
+.add-to-cart-btn{width:100%;padding:18px;background:var(--dark);color:#fff;font-family:'Cinzel',serif;font-size:13px;letter-spacing:4px;text-transform:uppercase;border-radius:2px;transition:all .3s var(--ease);margin-bottom:16px}
+.add-to-cart-btn:hover{background:var(--gold)}
+.add-to-cart-btn.added{background:var(--gold)}
+.view-cart-link{display:block;text-align:center;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);transition:color .3s}
+.view-cart-link:hover{color:var(--dark)}
+
+/* PRODUCT FEATURES */
+.product-features{margin-top:32px;padding-top:32px;border-top:1px solid rgba(0,0,0,.06)}
+.feature-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.04)}
+.feature-item svg{width:18px;height:18px;color:var(--gold);flex-shrink:0;margin-top:1px}
+.feature-text{font-size:13px;color:var(--text-light);line-height:1.5}
+.feature-text strong{color:var(--dark);font-weight:600}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark);color:#fff;padding:14px 28px;border-radius:2px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-family:'Cinzel',serif;z-index:9999;transition:transform .4s var(--ease);pointer-events:none;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* FOOTER */
+.footer-mini{background:var(--dark);color:rgba(255,255,255,.4);text-align:center;padding:28px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-top:60px}
+.footer-mini a{color:rgba(255,255,255,.6);margin:0 12px;transition:color .3s}
+.footer-mini a:hover{color:var(--gold)}
+
+/* RTL */
+[dir="rtl"]{font-family:'Cairo','DM Sans',sans-serif}
+[dir="rtl"] .product-cat-link{flex-direction:row-reverse}
+[dir="rtl"] .breadcrumb{direction:rtl}
+
+/* LANG TOGGLE */
+.lang-btn{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);padding:6px 12px;border:1px solid rgba(0,0,0,.12);border-radius:2px;transition:all .2s;font-family:'Cinzel',serif}
+.lang-btn:hover{border-color:var(--dark);color:var(--dark)}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="header-back" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+    <span id="backLabel">Back</span>
+  </a>
+  <a href="index.html"><img src="images/logo.png" alt="PLUZE" class="brand-logo" style="filter:brightness(0)"></a>
+  <div class="header-right">
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">ع</button>
+    <a href="index.html#" class="header-cart-btn" title="Cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </div>
+</header>
+
+<div class="breadcrumb" id="breadcrumb">
+  <a href="index.html">Home</a> › <a href="#" id="catLink">Category</a> › <span id="breadProduct">Product</span>
+</div>
+
+<div class="product-page">
+  <div class="product-gallery">
+    <div class="product-gallery-main">
+      <img id="productImg" src="" alt="">
+    </div>
+    <span class="product-badge" id="productBadge" style="display:none"></span>
+  </div>
+
+  <div class="product-detail">
+    <p class="product-cat-link" id="productCat">Category</p>
+    <h1 class="product-title" id="productName">Product Name</h1>
+    <div class="product-price-row">
+      <span class="product-price-main" id="productPrice">0 L.E</span>
+      <span class="product-price-old" id="productOldPrice" style="display:none"></span>
+    </div>
+    <div class="product-divider"></div>
+    <p class="product-desc" id="productDesc">Description</p>
+
+    <p class="size-label" id="sizeLabel">Size</p>
+    <div class="size-grid" id="sizeGrid">
+      <button class="size-btn" onclick="selectSize(this)">XS</button>
+      <button class="size-btn active" onclick="selectSize(this)">S</button>
+      <button class="size-btn" onclick="selectSize(this)">M</button>
+      <button class="size-btn" onclick="selectSize(this)">L</button>
+      <button class="size-btn" onclick="selectSize(this)">XL</button>
+    </div>
+
+    <p class="colors-label" id="colorsLabel">Color</p>
+    <div class="colors-row" id="colorsRow"></div>
+
+    <button class="add-to-cart-btn" onclick="addToCart()" id="addBtn">Add to Cart</button>
+    <a href="index.html" class="view-cart-link" id="viewCartLink">View All Products</a>
+
+    <div class="product-features">
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        <p class="feature-text" id="feat1"><strong>Free shipping</strong> on orders over 1500 L.E</p>
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <p class="feature-text" id="feat2"><strong>100% Egyptian cotton</strong> — premium quality guaranteed</p>
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+        <p class="feature-text" id="feat3"><strong>14-day returns</strong> — hassle-free exchange policy</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer-mini">
+  <p>&copy; 2026 PLUZE — <a href="index.html">Shop All</a> — <a href="index.html#categories">Categories</a></p>
+</footer>
+
+<div class="toast" id="toast">Added to Cart</div>
+
+<script>
+const products = [
+  {id:0,name:'Cartouche Oversize Tee',nameAr:'تيشيرت كارتوش أوفرسايز',price:599,img:'images/tee.jpg',desc:'Our signature piece featuring a hand-drawn pharaonic cartouche on the back. Made from 100% Egyptian cotton with an oversized relaxed fit.',descAr:'قطعتنا المميزة بكارتوش فرعوني مرسوم يدوياً على الظهر. قطن مصري ١٠٠٪ بقصة أوفرسايز.',badge:'Best Seller',cat:'tees',catAr:'تيشيرتات',colors:['#1a1a1a','#f5efe6']},
+  {id:1,name:'Camp Collar Linen Shirt',nameAr:'قميص كامب كولار كتان',price:899,img:'images/campaign.jpg',desc:'A premium linen-blend camp collar shirt inspired by the flowing garments of ancient Egyptian nobility. Perfect for warm Cairo evenings.',descAr:'قميص كتان فاخر مستوحى من أزياء النبلاء المصريين القدماء.',badge:'New',cat:'shirts',catAr:'قمصان',colors:['#f5efe6']},
+  {id:2,name:'Essential Oversize Tee',nameAr:'تيشيرت إسينشال أوفرسايز',price:449,img:'images/cargo.jpg',desc:'The foundation of every wardrobe. Clean, minimal, and made from the finest Egyptian cotton. Available in 3 colors.',descAr:'أساس كل دولاب. نظيف وبسيط من أجود أنواع القطن المصري.',badge:'',cat:'tees',catAr:'تيشيرتات',colors:['#1a1a1a','#f5efe6','#5c6b4f']},
+  {id:3,name:'Signature Tee Set',nameAr:'طقم تيشيرت سيجنتشر',price:799,img:'images/hoodie.jpg',desc:'Two premium PLUZE signature tees — one black, one cream. The perfect duo for the modern pharaoh. Save when you buy the set.',descAr:'تيشيرتين PLUZE سيجنتشر — أسود وكريمي. وفّر لما تشتري الطقم.',badge:'Bundle',cat:'bundles',catAr:'باقات',colors:['#1a1a1a','#f5efe6'],oldPrice:898},
+  {id:4,name:'Heritage Linen Shirt',nameAr:'قميص هيريتيج كتان',price:949,img:'images/jacket.jpg',desc:'A relaxed-fit linen shirt with subtle hieroglyphic-inspired stitching on the collar. Lightweight and breathable.',descAr:'قميص كتان بقصة مريحة مع تطريز مستوحى من الهيروغليفية.',badge:'',cat:'shirts',catAr:'قمصان',colors:['#f5efe6','#d4b896']},
+  {id:5,name:'Essentials 3-Pack',nameAr:'باقة الأساسيات ٣ قطع',price:1199,img:'images/track.jpg',desc:'Three essential oversized tees in black, sand, and cream. Built for everyday wear with pharaonic quality. Save 20% vs buying separately.',descAr:'٣ تيشيرتات أوفرسايز بألوان أسود ورملي وكريمي. وفّر ٢٠٪.',badge:'Save 20%',cat:'bundles',catAr:'باقات',colors:['#1a1a1a','#d4b896','#f5efe6'],oldPrice:1347},
+  {id:6,name:'Dynasty Cargo Pants',nameAr:'بنطلون كارجو داينستي',price:749,img:'images/look-1.jpg',desc:'Relaxed-fit cargo pants in premium cotton twill. Inspired by the working garments of ancient Egyptian builders, updated for modern streets.',descAr:'بنطلون كارجو بقصة مريحة من قماش تويل قطني فاخر.',badge:'New',cat:'bundles',catAr:'باقات',colors:['#1a1a1a','#8b7355']},
+  {id:7,name:'Pharaoh Polo Shirt',nameAr:'قميص بولو فرعون',price:699,img:'images/look-4.jpg',desc:'A refined polo shirt with a camp collar twist. Made from a cotton-linen blend that gets softer with every wash.',descAr:'بولو راقي بياقة كامب كولار من مزيج قطن وكتان.',badge:'',cat:'shirts',catAr:'قمصان',colors:['#f5efe6','#1a1a1a']}
+];
+
+const i18n = {
+  en:{back:'Back',size:'Size',color:'Color',addBtn:'Add to Cart',added:'Added!',viewCart:'View All Products',toast:'Added to Cart',feat1:'<strong>Free shipping</strong> on orders over 1500 L.E',feat2:'<strong>100% Egyptian cotton</strong> — premium quality guaranteed',feat3:'<strong>14-day returns</strong> — hassle-free exchange policy',breadHome:'Home'},
+  ar:{back:'رجوع',size:'المقاس',color:'اللون',addBtn:'أضف للسلة',added:'تم الإضافة!',viewCart:'تصفح كل المنتجات',toast:'تم الإضافة للسلة',feat1:'<strong>شحن مجاني</strong> على الطلبات فوق ١٥٠٠ جنيه',feat2:'<strong>قطن مصري ١٠٠٪</strong> — جودة مضمونة',feat3:'<strong>إرجاع ١٤ يوم</strong> — سياسة تبديل بدون متاعب',breadHome:'الرئيسية'}
+};
+
+let currentLang = localStorage.getItem('pluze_lang') || 'en';
+let selectedColor = 0;
+
+function applyLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.getElementById('backLabel').textContent = t.back;
+  document.getElementById('sizeLabel').textContent = t.size;
+  document.getElementById('colorsLabel').textContent = t.color;
+  document.getElementById('addBtn').textContent = t.addBtn;
+  document.getElementById('viewCartLink').textContent = t.viewCart;
+  document.getElementById('feat1').innerHTML = t.feat1;
+  document.getElementById('feat2').innerHTML = t.feat2;
+  document.getElementById('feat3').innerHTML = t.feat3;
+  document.getElementById('breadcrumb').querySelector('a').textContent = t.breadHome;
+  document.getElementById('langBtn').textContent = lang === 'ar' ? 'EN' : 'ع';
+  const pid = +new URLSearchParams(location.search).get('id');
+  if (!isNaN(pid) && products[pid]) renderProduct(products[pid]);
+}
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'ar' : 'en';
+  localStorage.setItem('pluze_lang', currentLang);
+  applyLang(currentLang);
+}
+
+function renderProduct(p) {
+  const isAr = currentLang === 'ar';
+  document.title = 'PLUZE — ' + (isAr ? p.nameAr : p.name);
+  document.getElementById('productImg').src = p.img;
+  document.getElementById('productImg').alt = isAr ? p.nameAr : p.name;
+  document.getElementById('productName').textContent = isAr ? p.nameAr : p.name;
+  document.getElementById('productPrice').textContent = p.price.toLocaleString() + ' L.E';
+  document.getElementById('productDesc').textContent = isAr ? p.descAr : p.desc;
+  document.getElementById('productCat').textContent = isAr ? p.catAr : p.cat.charAt(0).toUpperCase() + p.cat.slice(1);
+  const catLink = document.getElementById('catLink');
+  catLink.textContent = isAr ? p.catAr : p.cat.charAt(0).toUpperCase() + p.cat.slice(1);
+  catLink.href = 'category.html?id=' + p.cat;
+  document.getElementById('breadProduct').textContent = isAr ? p.nameAr : p.name;
+  if (p.badge) {
+    document.getElementById('productBadge').textContent = p.badge;
+    document.getElementById('productBadge').style.display = 'inline-block';
+  }
+  if (p.oldPrice) {
+    document.getElementById('productOldPrice').textContent = p.oldPrice.toLocaleString() + ' L.E';
+    document.getElementById('productOldPrice').style.display = 'inline';
+  }
+  const colorsRow = document.getElementById('colorsRow');
+  colorsRow.innerHTML = '';
+  p.colors.forEach((c, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'color-dot' + (i === 0 ? ' active' : '');
+    dot.style.background = c;
+    dot.style.boxShadow = c === '#ffffff' || c === '#f5efe6' || c === '#f5f5f5' ? 'inset 0 0 0 1px rgba(0,0,0,.15)' : 'none';
+    dot.onclick = () => { colorsRow.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active')); dot.classList.add('active'); selectedColor = i; };
+    colorsRow.appendChild(dot);
+  });
+}
+
+function selectSize(btn) {
+  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function addToCart() {
+  const pid = +new URLSearchParams(location.search).get('id');
+  if (isNaN(pid) || !products[pid]) return;
+  const p = products[pid];
+  const selectedSize = document.querySelector('.size-btn.active')?.textContent || 'M';
+  const cart = JSON.parse(localStorage.getItem('pluze_cart') || '[]');
+  const existing = cart.find(i => i.id === p.id && i.size === selectedSize);
+  if (existing) existing.qty++;
+  else cart.push({id: p.id, name: p.name, nameAr: p.nameAr, price: p.price, img: p.img, size: selectedSize, qty: 1});
+  localStorage.setItem('pluze_cart', JSON.stringify(cart));
+  updateCartCount();
+  const btn = document.getElementById('addBtn');
+  btn.textContent = i18n[currentLang].added;
+  btn.classList.add('added');
+  showToast(i18n[currentLang].toast);
+  setTimeout(() => {
+    btn.textContent = i18n[currentLang].addBtn;
+    btn.classList.remove('added');
+  }, 2000);
+}
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('pluze_cart') || '[]');
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  const el = document.getElementById('cartCount');
+  el.textContent = count;
+  el.classList.toggle('show', count > 0);
+}
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// Init
+const pid = +new URLSearchParams(location.search).get('id');
+if (!isNaN(pid) && products[pid]) renderProduct(products[pid]);
+applyLang(currentLang);
+updateCartCount();
+</script>
+</body>
+</html>
