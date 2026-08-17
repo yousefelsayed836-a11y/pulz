@@ -10,9 +10,9 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --sand:#d4b896;--cream:#f5efe6;--dark:#1a1a1a;--gold:#b8860b;
-  --terracotta:#c4956a;--stone:#8b7355;--papyrus:#ede4d3;
-  --bg:#faf7f2;--text:#1a1a1a;--text-light:#6b5e50;
+  --sand:#d4b896;--cream:#f5f5f5;--dark:#1a1a1a;--gold:#b8860b;
+  --terracotta:#c4956a;--stone:#8b7355;--papyrus:#f7f6f3;
+  --bg:#ffffff;--text:#1a1a1a;--text-light:#6b5e50;
   --header-h:70px;--ease:cubic-bezier(.4,0,.2,1);
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -106,7 +106,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* HERO */
 .hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
 .hero-img{position:absolute;inset:0}
-.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
 .hero-img.desktop{display:none}
 .hero-img.mobile{display:block}
 @media(min-width:768px){.hero-img.desktop{display:block}.hero-img.mobile{display:none}}
@@ -310,6 +310,32 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .reveal{opacity:0;transform:translateY(30px);transition:all .7s var(--ease)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* LANG TOGGLE */
+.lang-btn{font-family:'DM Sans',system-ui,sans-serif !important}
+
+/* RTL SUPPORT */
+[dir="rtl"] body{font-family:'DM Sans','Cairo',system-ui,sans-serif}
+[dir="rtl"] .header-nav{direction:rtl}
+[dir="rtl"] .header-left{flex-direction:row-reverse}
+[dir="rtl"] .header-right{flex-direction:row-reverse}
+[dir="rtl"] .mobile-drawer{left:auto;right:0;transform:translateX(100%)}
+[dir="rtl"] .mobile-menu.open .mobile-drawer{transform:translateX(0)}
+[dir="rtl"] .mobile-close{align-self:flex-start}
+[dir="rtl"] .cart-drawer{right:auto;left:0}
+[dir="rtl"] .cart-panel{right:auto;left:0;transform:translateX(-100%)}
+[dir="rtl"] .cart-drawer.open .cart-panel{transform:translateX(0)}
+[dir="rtl"] .product-badge{left:auto;right:12px}
+[dir="rtl"] .product-wishlist{right:auto;left:12px}
+[dir="rtl"] .product-price .old{margin-left:0;margin-right:8px}
+[dir="rtl"] .campaign-overlay{direction:rtl}
+[dir="rtl"] .footer-brand p,[dir="rtl"] .footer-col a,[dir="rtl"] .story-text,[dir="rtl"] .modal-desc{direction:rtl;text-align:right}
+[dir="rtl"] .cart-item{direction:rtl}
+[dir="rtl"] .cart-item-remove{align-self:flex-start}
+[dir="rtl"] .scroll-top{left:auto;right:30px}
+[dir="rtl"] .toast{right:auto;left:30px}
+[dir="rtl"] .announce::before{left:auto;right:20px}
+[dir="rtl"] .announce::after{right:auto;left:20px}
+
 /* LOADING SCREEN */
 .loader{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s var(--ease)}
 .loader.done{opacity:0;pointer-events:none}
@@ -325,7 +351,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </div>
 
 <!-- ANNOUNCEMENT BAR -->
-<div class="announce">Free Shipping on Orders Over 800 ج.م</div>
+<div class="announce" data-i18n="announce">Free Shipping on Orders Over 800 EGP</div>
 
 <!-- HEADER -->
 <header class="header at-top" id="header">
@@ -334,31 +360,32 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <span></span><span></span><span></span>
     </button>
     <nav class="header-nav">
-      <a href="#new-arrivals">New In</a>
-      <a href="#categories">Shop</a>
-      <a href="#lookbook">Lookbook</a>
-      <a href="#story">Our Story</a>
+      <a href="#new-arrivals" data-i18n="nav_new">New In</a>
+      <a href="#categories" data-i18n="nav_shop">Shop</a>
+      <a href="#lookbook" data-i18n="nav_lookbook">Lookbook</a>
+      <a href="#story" data-i18n="nav_story">Our Story</a>
     </nav>
   </div>
   <div class="header-center">
     <a href="#" class="header-logo">
-      <svg viewBox="0 0 260 50" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="30" font-family="'Cinzel',serif" font-size="28" font-weight="500" letter-spacing="14" fill="currentColor">PLUZ</text>
-        <g transform="translate(195,5)">
-          <rect x="0" y="3" width="18" height="2.2" fill="currentColor"/>
-          <rect x="0" y="11.5" width="18" height="2.2" fill="currentColor"/>
-          <rect x="0" y="20" width="18" height="2.2" fill="currentColor"/>
+      <svg viewBox="0 0 220 44" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="28" font-family="'Cinzel',serif" font-size="28" font-weight="500" letter-spacing="14" fill="currentColor">PLUZ</text>
+        <g transform="translate(162,6)">
+          <rect x="0" y="2" width="16" height="2" fill="currentColor"/>
+          <rect x="0" y="10" width="16" height="2" fill="currentColor"/>
+          <rect x="0" y="18" width="16" height="2" fill="currentColor"/>
         </g>
-        <g transform="translate(108,36)" opacity=".5">
-          <line x1="0" y1="0" x2="16" y2="0" stroke="currentColor" stroke-width="1"/>
-          <circle cx="24" cy="0" r="3" fill="none" stroke="currentColor" stroke-width="1"/>
-          <path d="M27,0 Q30,-3 33,0" stroke="currentColor" stroke-width="1" fill="none"/>
-          <line x1="40" y1="0" x2="56" y2="0" stroke="currentColor" stroke-width="1"/>
+        <g transform="translate(88,34)" opacity=".45">
+          <line x1="0" y1="0" x2="14" y2="0" stroke="currentColor" stroke-width=".8"/>
+          <circle cx="21" cy="0" r="2.5" fill="none" stroke="currentColor" stroke-width=".8"/>
+          <path d="M23.5,0 Q26,-2.5 28.5,0" stroke="currentColor" stroke-width=".8" fill="none"/>
+          <line x1="35" y1="0" x2="49" y2="0" stroke="currentColor" stroke-width=".8"/>
         </g>
       </svg>
     </a>
   </div>
   <div class="header-right">
+    <button class="header-icon lang-btn" id="langBtn" aria-label="Language" style="width:auto;font-size:12px;letter-spacing:1px;font-weight:600">عربي</button>
     <button class="header-icon search-btn" id="searchBtn" aria-label="Search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M16 16l4.5 4.5"/></svg>
     </button>
@@ -375,13 +402,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="mobile-drawer">
     <button class="mobile-close" id="mobileClose">&times;</button>
     <div class="mobile-links">
-      <a href="#new-arrivals" class="mobile-link">New Arrivals</a>
-      <a href="#categories" class="mobile-link">Shop All</a>
-      <a href="#lookbook" class="mobile-link">Lookbook</a>
-      <a href="#story" class="mobile-link">Our Story</a>
-      <a href="#community" class="mobile-link">Community</a>
-      <a href="#" class="mobile-link">Size Guide</a>
-      <a href="#" class="mobile-link">Contact</a>
+      <a href="#new-arrivals" class="mobile-link" data-i18n="nav_new">New Arrivals</a>
+      <a href="#categories" class="mobile-link" data-i18n="nav_shop_all">Shop All</a>
+      <a href="#lookbook" class="mobile-link" data-i18n="nav_lookbook">Lookbook</a>
+      <a href="#story" class="mobile-link" data-i18n="nav_story">Our Story</a>
+      <a href="#community" class="mobile-link" data-i18n="nav_community">Community</a>
+      <a href="#" class="mobile-link" data-i18n="nav_size">Size Guide</a>
+      <a href="#" class="mobile-link" data-i18n="nav_contact">Contact</a>
     </div>
     <div class="mobile-bottom">
       <p>Street Culture. Egyptian Soul.</p>
@@ -394,21 +421,21 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="cart-drawer-overlay" id="cartOverlay"></div>
   <div class="cart-panel">
     <div class="cart-header">
-      <h3>Your Cart</h3>
+      <h3 data-i18n="your_cart">Your Cart</h3>
       <button class="cart-close" id="cartClose">&times;</button>
     </div>
     <div class="cart-items" id="cartItems">
       <div class="cart-empty" id="cartEmpty">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        <p>Your cart is empty</p>
+        <p data-i18n="cart_empty">Your cart is empty</p>
       </div>
     </div>
     <div class="cart-footer" id="cartFooter" style="display:none">
       <div class="cart-total">
-        <span>Subtotal</span>
+        <span data-i18n="subtotal">Subtotal</span>
         <span id="cartTotal">0 ج.م</span>
       </div>
-      <button class="cart-checkout-btn">Checkout</button>
+      <button class="cart-checkout-btn" data-i18n="checkout">Checkout</button>
     </div>
   </div>
 </div>
@@ -427,10 +454,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="hero-img mobile"><img src="images/tee.jpg" alt="PLUZE Collection"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-tagline">Summer '26 Collection</p>
-    <h1 class="hero-title cinzel">Made For Now.<br>Rooted In Us.</h1>
-    <p class="hero-sub">Street Culture meets Ancient Egyptian Soul</p>
-    <a href="#new-arrivals" class="hero-cta"><span>Shop Collection</span></a>
+    <h1 class="hero-title cinzel" data-i18n="hero_title">Made For Now.<br>Rooted In Us.</h1>
+    <a href="#new-arrivals" class="hero-cta"><span data-i18n="hero_cta">Shop Collection</span></a>
   </div>
   <div class="hero-scroll">
     <svg width="20" height="28" viewBox="0 0 20 28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="18" height="26" rx="9"/><line x1="10" y1="6" x2="10" y2="12"/></svg>
@@ -459,8 +484,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <section class="section" id="new-arrivals">
   <div class="section-header reveal">
     <p class="section-label">𓂀 New Season 𓂀</p>
-    <h2 class="section-title">New Arrivals</h2>
-    <p class="section-desc">Pieces inspired by the echoes of ancient Egypt, crafted for the modern streets.</p>
+    <h2 class="section-title" data-i18n="new_arrivals">New Arrivals</h2>
   </div>
   <div class="products-grid">
     <div class="product-card reveal" onclick="openProduct(0)">
@@ -468,7 +492,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         <img src="images/tee.jpg" alt="Cartouche Oversize Tee" loading="lazy">
         <span class="product-badge">Best Seller</span>
         <button class="product-wishlist" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
-        <div class="product-quick">Quick View</div>
+        <div class="product-quick" data-i18n="quick_view">Quick View</div>
       </div>
       <div class="product-info">
         <h3 class="product-name">Cartouche Oversize Tee</h3>
@@ -484,7 +508,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         <img src="images/campaign.jpg" alt="Camp Collar Linen Shirt" loading="lazy">
         <span class="product-badge">New</span>
         <button class="product-wishlist" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
-        <div class="product-quick">Quick View</div>
+        <div class="product-quick" data-i18n="quick_view">Quick View</div>
       </div>
       <div class="product-info">
         <h3 class="product-name">Camp Collar Linen Shirt</h3>
@@ -498,7 +522,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <div class="product-img">
         <img src="images/cargo.jpg" alt="Essential Oversize Tee" loading="lazy">
         <button class="product-wishlist" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
-        <div class="product-quick">Quick View</div>
+        <div class="product-quick" data-i18n="quick_view">Quick View</div>
       </div>
       <div class="product-info">
         <h3 class="product-name">Essential Oversize Tee</h3>
@@ -515,7 +539,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         <img src="images/hoodie.jpg" alt="PLUZE Signature Tee Set" loading="lazy">
         <span class="product-badge">Bundle</span>
         <button class="product-wishlist" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
-        <div class="product-quick">Quick View</div>
+        <div class="product-quick" data-i18n="quick_view">Quick View</div>
       </div>
       <div class="product-info">
         <h3 class="product-name">Signature Tee Set</h3>
@@ -526,7 +550,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <div class="product-img">
         <img src="images/jacket.jpg" alt="Heritage Linen Shirt" loading="lazy">
         <button class="product-wishlist" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
-        <div class="product-quick">Quick View</div>
+        <div class="product-quick" data-i18n="quick_view">Quick View</div>
       </div>
       <div class="product-info">
         <h3 class="product-name">Heritage Linen Shirt</h3>
@@ -542,7 +566,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         <img src="images/track.jpg" alt="Essentials 3-Pack" loading="lazy">
         <span class="product-badge">Save 20%</span>
         <button class="product-wishlist" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
-        <div class="product-quick">Quick View</div>
+        <div class="product-quick" data-i18n="quick_view">Quick View</div>
       </div>
       <div class="product-info">
         <h3 class="product-name">Essentials 3-Pack</h3>
@@ -554,7 +578,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         <img src="images/look-1.jpg" alt="Dynasty Cargo Pants" loading="lazy">
         <span class="product-badge">New</span>
         <button class="product-wishlist" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
-        <div class="product-quick">Quick View</div>
+        <div class="product-quick" data-i18n="quick_view">Quick View</div>
       </div>
       <div class="product-info">
         <h3 class="product-name">Dynasty Cargo Pants</h3>
@@ -569,7 +593,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <div class="product-img">
         <img src="images/look-4.jpg" alt="Pharaoh Polo Shirt" loading="lazy">
         <button class="product-wishlist" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
-        <div class="product-quick">Quick View</div>
+        <div class="product-quick" data-i18n="quick_view">Quick View</div>
       </div>
       <div class="product-info">
         <h3 class="product-name">Pharaoh Polo Shirt</h3>
@@ -588,9 +612,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="campaign-overlay">
     <div class="campaign-content reveal">
       <p class="campaign-label">𓇳 The Pharaonic Collection</p>
-      <h2 class="campaign-title cinzel">Wear Your Story</h2>
-      <p class="campaign-text">Every thread carries the weight of 5,000 years. Ancient symbols reimagined for modern streets — where heritage meets hustle.</p>
-      <a href="#new-arrivals" class="campaign-btn">Explore Now</a>
+      <h2 class="campaign-title cinzel" data-i18n="campaign_title">Wear Your Story</h2>
+      <a href="#new-arrivals" class="campaign-btn" data-i18n="campaign_btn">Explore Now</a>
     </div>
   </div>
 </section>
@@ -599,28 +622,28 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <section class="section" id="categories">
   <div class="section-header reveal">
     <p class="section-label">𓋴 Collections</p>
-    <h2 class="section-title">Shop by Category</h2>
+    <h2 class="section-title" data-i18n="shop_category">Shop by Category</h2>
   </div>
   <div class="categories-grid">
     <div class="category-card reveal">
       <img src="images/cargo.jpg" alt="T-Shirts" loading="lazy">
       <div class="category-overlay">
-        <h3 class="category-name cinzel">T-Shirts</h3>
-        <p class="category-count">12 Products</p>
+        <h3 class="category-name cinzel" data-i18n="cat_tees">T-Shirts</h3>
+        <p class="category-count" data-i18n="cat_tees_n">12 Products</p>
       </div>
     </div>
     <div class="category-card reveal">
       <img src="images/campaign.jpg" alt="Shirts" loading="lazy">
       <div class="category-overlay">
-        <h3 class="category-name cinzel">Shirts</h3>
-        <p class="category-count">8 Products</p>
+        <h3 class="category-name cinzel" data-i18n="cat_shirts">Shirts</h3>
+        <p class="category-count" data-i18n="cat_shirts_n">8 Products</p>
       </div>
     </div>
     <div class="category-card reveal">
       <img src="images/track.jpg" alt="Bundles" loading="lazy">
       <div class="category-overlay">
-        <h3 class="category-name cinzel">Bundles</h3>
-        <p class="category-count">4 Products</p>
+        <h3 class="category-name cinzel" data-i18n="cat_bundles">Bundles</h3>
+        <p class="category-count" data-i18n="cat_bundles_n">4 Products</p>
       </div>
     </div>
   </div>
@@ -631,23 +654,23 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="features-inner">
     <div class="feature-item">
       <div class="feature-icon">𓂋</div>
-      <h4 class="feature-title">Free Shipping</h4>
-      <p class="feature-desc">On orders over 800 ج.م</p>
+      <h4 class="feature-title" data-i18n="feat_ship">Free Shipping</h4>
+      <p class="feature-desc" data-i18n="feat_ship_d">On orders over 800 EGP</p>
     </div>
     <div class="feature-item">
       <div class="feature-icon">𓁹</div>
-      <h4 class="feature-title">Premium Quality</h4>
-      <p class="feature-desc">100% Egyptian Cotton</p>
+      <h4 class="feature-title" data-i18n="feat_quality">Premium Quality</h4>
+      <p class="feature-desc" data-i18n="feat_quality_d">100% Egyptian Cotton</p>
     </div>
     <div class="feature-item">
       <div class="feature-icon">𓃭</div>
-      <h4 class="feature-title">Easy Returns</h4>
-      <p class="feature-desc">14-day return policy</p>
+      <h4 class="feature-title" data-i18n="feat_return">Easy Returns</h4>
+      <p class="feature-desc" data-i18n="feat_return_d">14-day return policy</p>
     </div>
     <div class="feature-item">
       <div class="feature-icon">𓇳</div>
-      <h4 class="feature-title">Secure Payment</h4>
-      <p class="feature-desc">SSL encrypted checkout</p>
+      <h4 class="feature-title" data-i18n="feat_pay">Secure Payment</h4>
+      <p class="feature-desc" data-i18n="feat_pay_d">SSL encrypted checkout</p>
     </div>
   </div>
 </div>
@@ -656,29 +679,28 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <section class="section" id="lookbook">
   <div class="section-header reveal">
     <p class="section-label">𓁹 Editorial</p>
-    <h2 class="section-title">The Lookbook</h2>
-    <p class="section-desc">Less noise. More you.</p>
+    <h2 class="section-title" data-i18n="lookbook">The Lookbook</h2>
   </div>
   <div class="lookbook-grid">
     <div class="lookbook-item reveal">
       <img src="images/lookbook.jpg" alt="Lookbook" loading="lazy">
-      <div class="lookbook-hover"><span>View Look</span></div>
+      <div class="lookbook-hover"><span data-i18n="view_look">View Look</span></div>
     </div>
     <div class="lookbook-item reveal">
       <img src="images/look-3.jpg" alt="Look 1" loading="lazy">
-      <div class="lookbook-hover"><span>View Look</span></div>
+      <div class="lookbook-hover"><span data-i18n="view_look">View Look</span></div>
     </div>
     <div class="lookbook-item reveal">
       <img src="images/look-2.jpg" alt="Look 2" loading="lazy">
-      <div class="lookbook-hover"><span>View Look</span></div>
+      <div class="lookbook-hover"><span data-i18n="view_look">View Look</span></div>
     </div>
     <div class="lookbook-item reveal">
       <img src="images/look-1.jpg" alt="Look 3" loading="lazy">
-      <div class="lookbook-hover"><span>View Look</span></div>
+      <div class="lookbook-hover"><span data-i18n="view_look">View Look</span></div>
     </div>
     <div class="lookbook-item reveal">
       <img src="images/look-4.jpg" alt="Look 4" loading="lazy">
-      <div class="lookbook-hover"><span>View Look</span></div>
+      <div class="lookbook-hover"><span data-i18n="view_look">View Look</span></div>
     </div>
   </div>
 </section>
@@ -691,9 +713,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     </div>
     <div class="story-content reveal">
       <p class="story-label">𓂀 Our Heritage</p>
-      <h2 class="story-title">Street Culture.<br>Egyptian Soul.</h2>
-      <p class="story-text">Born on the streets of Cairo, PLUZE bridges the gap between ancient Egyptian heritage and contemporary streetwear. Every piece carries the spirit of the pharaohs — reimagined for the modern era.</p>
-      <p class="story-text">We believe in less noise, more you. Our designs strip away the unnecessary, leaving only what matters: quality fabrics, meaningful symbols, and a connection to 5,000 years of culture.</p>
+      <h2 class="story-title" data-i18n="story_title">Street Culture.<br>Egyptian Soul.</h2>
+      <p class="story-text" data-i18n="story_text">Born in Cairo, PLUZE bridges ancient Egyptian heritage and modern streetwear. Every piece carries the spirit of the pharaohs — reimagined for today.</p>
       <div class="story-hieroglyphs">𓂀 𓃭 𓋴 𓁹 𓂋 𓇳 𓅃 𓆣</div>
     </div>
   </div>
@@ -703,7 +724,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <section id="community">
   <div class="section-header reveal" style="padding:80px 20px 40px">
     <p class="section-label">𓃭 @pluze.eg</p>
-    <h2 class="section-title">Join the Dynasty</h2>
+    <h2 class="section-title" data-i18n="community">Join the Dynasty</h2>
   </div>
   <div class="community-grid">
     <div class="community-item">
@@ -733,11 +754,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <section class="newsletter">
   <div class="reveal">
     <p class="pharaonic-divider">𓂀 𓃭 𓋴 𓁹 𓂋</p>
-    <h2 class="newsletter-title cinzel">Join the Dynasty</h2>
-    <p class="newsletter-desc">Subscribe for early access, exclusive drops & stories from the streets of Cairo.</p>
-    <form class="newsletter-form" onsubmit="event.preventDefault();showToast('Welcome to the Dynasty!')">
-      <input type="email" placeholder="Your email address" required>
-      <button type="submit">Subscribe</button>
+    <h2 class="newsletter-title cinzel" data-i18n="newsletter_title">Join the Dynasty</h2>
+    <form class="newsletter-form" onsubmit="event.preventDefault();showToast(currentLang==='ar'?'أهلاً بيك في العيلة!':'Welcome to the Dynasty!')">
+      <input type="email" placeholder="Your email address" data-i18n-placeholder="email_placeholder" required>
+      <button type="submit" data-i18n="subscribe">Subscribe</button>
     </form>
   </div>
 </section>
@@ -751,27 +771,27 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <p>Street Culture. Egyptian Soul. Born in Cairo, worn worldwide. Every thread tells a story that's 5,000 years in the making.</p>
     </div>
     <div class="footer-col">
-      <h4>Shop</h4>
-      <a href="#">New Arrivals</a>
-      <a href="#">T-Shirts</a>
-      <a href="#">Shirts</a>
-      <a href="#">Bundles</a>
-      <a href="#">Sale</a>
+      <h4 data-i18n="f_shop">Shop</h4>
+      <a href="#" data-i18n="f_new">New Arrivals</a>
+      <a href="#" data-i18n="f_tees">T-Shirts</a>
+      <a href="#" data-i18n="f_shirts">Shirts</a>
+      <a href="#" data-i18n="f_bundles">Bundles</a>
+      <a href="#" data-i18n="f_sale">Sale</a>
     </div>
     <div class="footer-col">
-      <h4>Help</h4>
-      <a href="#">Size Guide</a>
-      <a href="#">Shipping</a>
-      <a href="#">Returns</a>
-      <a href="#">FAQ</a>
-      <a href="#">Contact Us</a>
+      <h4 data-i18n="f_help">Help</h4>
+      <a href="#" data-i18n="f_size">Size Guide</a>
+      <a href="#" data-i18n="f_shipping">Shipping</a>
+      <a href="#" data-i18n="f_returns">Returns</a>
+      <a href="#" data-i18n="f_faq">FAQ</a>
+      <a href="#" data-i18n="f_contact">Contact Us</a>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
-      <a href="#">Our Story</a>
-      <a href="#">Careers</a>
-      <a href="#">Press</a>
-      <a href="#">Sustainability</a>
+      <h4 data-i18n="f_company">Company</h4>
+      <a href="#" data-i18n="f_story">Our Story</a>
+      <a href="#" data-i18n="f_careers">Careers</a>
+      <a href="#" data-i18n="f_press">Press</a>
+      <a href="#" data-i18n="f_sustain">Sustainability</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -804,7 +824,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <p class="modal-price" id="modalPrice"></p>
       <p class="modal-desc" id="modalDesc"></p>
       <div>
-        <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;color:var(--text-light)">Size</p>
+        <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;color:var(--text-light)" data-i18n="modal_size">Size</p>
         <div class="modal-sizes" id="modalSizes">
           <label><input type="radio" name="size" value="S"><span>S</span></label>
           <label><input type="radio" name="size" value="M"><span>M</span></label>
@@ -814,25 +834,70 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         </div>
       </div>
       <div>
-        <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;color:var(--text-light)">Quantity</p>
+        <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;color:var(--text-light)" data-i18n="modal_qty_label">Quantity</p>
         <div class="modal-qty">
           <button onclick="changeQty(-1)">−</button>
           <span id="modalQty">1</span>
           <button onclick="changeQty(1)">+</button>
         </div>
       </div>
-      <button class="modal-add-btn" onclick="addFromModal()">Add to Cart</button>
+      <button class="modal-add-btn" onclick="addFromModal()" data-i18n="modal_add">Add to Cart</button>
       <ul class="modal-features">
-        <li>100% Premium Egyptian Cotton</li>
-        <li>Oversized relaxed fit</li>
-        <li>Pharaonic-inspired details</li>
-        <li>Pre-washed for softness</li>
+        <li data-i18n="modal_f1">100% Premium Egyptian Cotton</li>
+        <li data-i18n="modal_f2">Oversized relaxed fit</li>
+        <li data-i18n="modal_f3">Pharaonic-inspired details</li>
+        <li data-i18n="modal_f4">Pre-washed for softness</li>
       </ul>
     </div>
   </div>
 </div>
 
 <script>
+let currentLang = 'en';
+const i18n = {
+  ar: {
+    announce:'شحن مجاني للطلبات فوق ٨٠٠ ج.م',
+    hero_title:'صُنع للحاضر.<br>متجذّر فينا.',
+    hero_cta:'تسوّق الآن',
+    new_arrivals:'وصل حديثاً',
+    nav_new:'جديد',nav_shop:'تسوّق',nav_lookbook:'لوك بوك',nav_story:'قصتنا',
+    nav_shop_all:'تسوّق الكل',nav_community:'المجتمع',nav_size:'دليل المقاسات',nav_contact:'تواصل معنا',
+    your_cart:'سلة التسوق',cart_empty:'سلتك فارغة',subtotal:'المجموع',checkout:'إتمام الشراء',
+    campaign_title:'البس حكايتك',campaign_btn:'اكتشف الآن',
+    shop_category:'تسوّق حسب الفئة',
+    cat_tees:'تيشيرتات',cat_tees_n:'١٢ منتج',cat_shirts:'قمصان',cat_shirts_n:'٨ منتجات',cat_bundles:'باقات',cat_bundles_n:'٤ منتجات',
+    feat_ship:'شحن مجاني',feat_ship_d:'للطلبات فوق ٨٠٠ ج.م',
+    feat_quality:'جودة عالية',feat_quality_d:'قطن مصري ١٠٠٪',
+    feat_return:'إرجاع سهل',feat_return_d:'سياسة إرجاع ١٤ يوم',
+    feat_pay:'دفع آمن',feat_pay_d:'تشفير SSL كامل',
+    lookbook:'لوك بوك',
+    story_title:'ثقافة الشارع.<br>روح مصرية.',
+    story_text:'وُلدت PLUZE في شوارع القاهرة لتربط بين التراث الفرعوني وأزياء الشارع العصرية. كل قطعة تحمل روح الفراعنة — مُعاد تخيلها لليوم.',
+    community:'انضم للعيلة',
+    newsletter_title:'انضم للعيلة',
+    email_placeholder:'بريدك الإلكتروني',subscribe:'اشترك',
+    quick_view:'عرض سريع',view_look:'شوف اللوك',
+    f_shop:'تسوّق',f_help:'مساعدة',f_company:'الشركة',
+    f_new:'وصل حديثاً',f_tees:'تيشيرتات',f_shirts:'قمصان',f_bundles:'باقات',f_sale:'تخفيضات',
+    f_size:'دليل المقاسات',f_shipping:'الشحن',f_returns:'الإرجاع',f_faq:'أسئلة شائعة',f_contact:'تواصل معنا',
+    f_story:'قصتنا',f_careers:'وظائف',f_press:'صحافة',f_sustain:'الاستدامة',
+    modal_size:'المقاس',modal_qty:'الكمية',modal_add:'أضف للسلة',
+    modal_f1:'قطن مصري فاخر ١٠٠٪',modal_f2:'قصة أوفرسايز مريحة',modal_f3:'تفاصيل بطابع فرعوني',modal_f4:'مغسول مسبقاً للنعومة',
+    modal_qty_label:'الكمية',
+    f_sale:'تخفيضات'
+  }
+};
+const productsAr = [
+  {name:'تيشيرت كارتوش أوفرسايز',desc:'قطعتنا المميزة بكارتوش فرعوني مرسوم يدوياً على الظهر. قطن مصري ١٠٠٪ بقصة أوفرسايز.'},
+  {name:'قميص كامب كولار كتان',desc:'قميص كتان فاخر مستوحى من أزياء النبلاء المصريين القدماء.'},
+  {name:'تيشيرت إسينشال أوفرسايز',desc:'أساس كل دولاب. نظيف وبسيط من أجود أنواع القطن المصري.'},
+  {name:'طقم تيشيرت سيجنتشر',desc:'تيشيرتين PLUZE سيجنتشر — أسود وكريمي. وفّر لما تشتري الطقم.'},
+  {name:'قميص هيريتيج كتان',desc:'قميص كتان بقصة مريحة مع تطريز مستوحى من الهيروغليفية.'},
+  {name:'باقة الأساسيات ٣ قطع',desc:'٣ تيشيرتات أوفرسايز بألوان أسود ورملي وكريمي. وفّر ٢٠٪.'},
+  {name:'بنطلون كارجو داينستي',desc:'بنطلون كارجو بقصة مريحة من قماش تويل قطني فاخر.'},
+  {name:'قميص بولو فرعون',desc:'بولو راقي بياقة كامب كولار من مزيج قطن وكتان.'}
+];
+
 const products = [
   {id:0,name:'Cartouche Oversize Tee',price:599,img:'images/tee.jpg',desc:'Our signature piece featuring a hand-drawn pharaonic cartouche on the back. Made from 100% Egyptian cotton with an oversized relaxed fit.',badge:'Best Seller'},
   {id:1,name:'Camp Collar Linen Shirt',price:899,img:'images/campaign.jpg',desc:'A premium linen-blend camp collar shirt inspired by the flowing garments of ancient Egyptian nobility. Perfect for warm Cairo evenings.',badge:'New'},
@@ -898,9 +963,10 @@ function openProduct(idx) {
   currentProduct = products[idx];
   modalQty = 1;
   document.getElementById('modalImg').src = currentProduct.img;
-  document.getElementById('modalName').textContent = currentProduct.name;
+  const isAr = currentLang === 'ar';
+  document.getElementById('modalName').textContent = isAr ? productsAr[idx].name : currentProduct.name;
   document.getElementById('modalPrice').textContent = currentProduct.price.toLocaleString() + ' ج.م';
-  document.getElementById('modalDesc').textContent = currentProduct.desc;
+  document.getElementById('modalDesc').textContent = isAr ? productsAr[idx].desc : currentProduct.desc;
   document.getElementById('modalQty').textContent = 1;
   document.querySelectorAll('.modal-sizes input')[2].checked = true;
   document.getElementById('productModal').classList.add('open');
@@ -931,7 +997,7 @@ function addFromModal() {
   }
   updateCart();
   closeModal();
-  showToast('Added to cart!');
+  showToast(currentLang === 'ar' ? 'تمت الإضافة للسلة!' : 'Added to cart!');
   setTimeout(() => cartDrawer.classList.add('open'), 400);
 }
 
@@ -959,14 +1025,18 @@ function updateCart() {
   totalEl.textContent = totalPrice.toLocaleString() + ' ج.م';
 
   itemsEl.querySelectorAll('.cart-item').forEach(e => e.remove());
+  const isAr = currentLang === 'ar';
+  const sizeLabel = isAr ? 'المقاس' : 'Size';
   cart.forEach((item, i) => {
+    const pIdx = products.findIndex(p => p.id === item.id);
+    const displayName = isAr && pIdx >= 0 ? productsAr[pIdx].name : item.name;
     const div = document.createElement('div');
     div.className = 'cart-item';
     div.innerHTML = `
-      <div class="cart-item-img"><img src="${item.img}" alt="${item.name}"></div>
+      <div class="cart-item-img"><img src="${item.img}" alt="${displayName}"></div>
       <div class="cart-item-info">
-        <p class="cart-item-name">${item.name}</p>
-        <p class="cart-item-size">Size: ${item.size}</p>
+        <p class="cart-item-name">${displayName}</p>
+        <p class="cart-item-size">${sizeLabel}: ${item.size}</p>
         <p class="cart-item-price">${item.price.toLocaleString()} ج.م</p>
         <div class="cart-item-qty">
           <button onclick="cartQty(${i},-1)">−</button>
@@ -1007,6 +1077,60 @@ const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }});
 }, {threshold: 0.1});
 revealEls.forEach(el => revealObs.observe(el));
+
+// LANGUAGE TOGGLE
+const enDefaults = {};
+document.querySelectorAll('[data-i18n]').forEach(el => {
+  enDefaults[el.getAttribute('data-i18n')] = el.innerHTML;
+});
+const enPlaceholders = {};
+document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+  enPlaceholders[el.getAttribute('data-i18n-placeholder')] = el.placeholder;
+});
+
+function applyLang(lang) {
+  currentLang = lang;
+  const root = document.documentElement;
+  if (lang === 'ar') {
+    root.setAttribute('dir', 'rtl');
+    root.setAttribute('lang', 'ar');
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (i18n.ar[key]) el.innerHTML = i18n.ar[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (i18n.ar[key]) el.placeholder = i18n.ar[key];
+    });
+    document.getElementById('langBtn').textContent = 'EN';
+  } else {
+    root.setAttribute('dir', 'ltr');
+    root.setAttribute('lang', 'en');
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (enDefaults[key]) el.innerHTML = enDefaults[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (enPlaceholders[key]) el.placeholder = enPlaceholders[key];
+    });
+    document.getElementById('langBtn').textContent = 'عربي';
+  }
+  document.querySelectorAll('.product-card').forEach((card, idx) => {
+    const nameEl = card.querySelector('.product-name');
+    if (nameEl) nameEl.textContent = lang === 'ar' ? productsAr[idx].name : products[idx].name;
+  });
+  if (currentProduct) {
+    const idx = currentProduct.id;
+    document.getElementById('modalName').textContent = lang === 'ar' ? productsAr[idx].name : currentProduct.name;
+    document.getElementById('modalDesc').textContent = lang === 'ar' ? productsAr[idx].desc : currentProduct.desc;
+  }
+  updateCart();
+}
+
+document.getElementById('langBtn').onclick = () => {
+  applyLang(currentLang === 'en' ? 'ar' : 'en');
+};
 
 // ESC KEY
 document.addEventListener('keydown', e => {
