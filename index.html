@@ -22,14 +22,9 @@ a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 .cinzel{font-family:'Cinzel',serif}
 
-/* ANNOUNCEMENT BAR */
-.announce{background:var(--dark);color:var(--cream);text-align:center;padding:10px 20px;font-size:12px;letter-spacing:3px;text-transform:uppercase;position:relative;overflow:hidden}
-.announce::before,.announce::after{content:'𓂀';position:absolute;top:50%;transform:translateY(-50%);color:var(--gold);font-size:14px;opacity:.6}
-.announce::before{left:20px}
-.announce::after{right:20px}
 
 /* HEADER */
-.header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:all .4s var(--ease);padding:0 40px;height:var(--header-h);display:flex;align-items:center;justify-content:space-between}
+.header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:all .4s var(--ease);padding:0 40px;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;direction:ltr}
 .header.at-top{background:transparent}
 .header.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 1px 20px rgba(0,0,0,.06)}
 .header.at-top .header-logo svg,.header.at-top .header-icon{color:#fff;fill:#fff}
@@ -44,14 +39,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .cart-btn{position:relative}
 .cart-count{position:absolute;top:-6px;right:-8px;background:var(--gold);color:#fff;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;opacity:0;transform:scale(0);transition:all .3s var(--ease)}
 .cart-count.show{opacity:1;transform:scale(1)}
-.header-nav{display:none;gap:32px}
-.header-nav a{font-size:13px;letter-spacing:2px;text-transform:uppercase;position:relative;padding:4px 0}
-.header-nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:currentColor;transition:width .3s var(--ease)}
-.header-nav a:hover::after{width:100%}
+.header-nav{display:none}
 @media(min-width:1024px){
   .header{padding:0 60px}
-  .header-nav{display:flex}
-  .menu-btn{display:none}
 }
 .search-btn{display:none}
 @media(min-width:1024px){.search-btn{display:block}}
@@ -106,11 +96,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* HERO */
 .hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
 .hero-img{position:absolute;inset:0}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center center}
 .hero-img.desktop{display:none}
 .hero-img.mobile{display:block}
 @media(min-width:768px){.hero-img.desktop{display:block}.hero-img.mobile{display:none}}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.15) 0%,rgba(0,0,0,.05) 40%,rgba(0,0,0,.4) 100%)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.15) 0%,rgba(0,0,0,.05) 40%,rgba(0,0,0,.4) 85%,var(--bg) 100%)}
 .hero-content{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);text-align:center;color:#fff;width:90%;max-width:700px}
 .hero-tagline{font-size:13px;letter-spacing:6px;text-transform:uppercase;margin-bottom:16px;opacity:.9}
 .hero-title{font-family:'Cinzel',serif;font-size:clamp(28px,5vw,52px);letter-spacing:6px;text-transform:uppercase;line-height:1.2;margin-bottom:12px;text-shadow:0 2px 20px rgba(0,0,0,.3)}
@@ -126,12 +116,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* PHARAONIC DIVIDER */
 .pharaonic-divider{text-align:center;padding:8px 0;color:var(--gold);font-size:20px;letter-spacing:12px;opacity:.4}
 
-/* MARQUEE */
-.marquee-wrap{overflow:hidden;background:var(--dark);padding:14px 0}
-.marquee-track{display:flex;animation:marquee 30s linear infinite;width:max-content}
-.marquee-track span{font-family:'Cinzel',serif;color:var(--cream);font-size:12px;letter-spacing:6px;text-transform:uppercase;white-space:nowrap;padding:0 40px}
-.marquee-track .dot{color:var(--gold);padding:0 20px}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* PHARAONIC QUOTE */
+.pharaonic-quote{text-align:center;padding:60px 20px 40px;background:var(--bg)}
+.pharaonic-quote-inner{max-width:700px;margin:0 auto}
+.hieroglyphs-text{font-size:clamp(24px,4vw,40px);letter-spacing:10px;color:var(--gold);opacity:.6;margin-bottom:20px;line-height:1.5}
+.hieroglyphs-translate{font-family:'Cinzel',serif;font-size:clamp(15px,2vw,20px);letter-spacing:2px;color:var(--dark);line-height:1.6;font-style:italic}
+.hieroglyphs-source{font-size:12px;color:var(--text-light);letter-spacing:1.5px;margin-top:12px;opacity:.7}
+
 
 /* SECTION COMMON */
 .section{padding:80px 20px}
@@ -200,17 +191,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .lookbook-item:hover .lookbook-hover{opacity:1}
 .lookbook-hover span{color:#fff;font-family:'Cinzel',serif;font-size:12px;letter-spacing:4px;text-transform:uppercase;border:1px solid #fff;padding:10px 24px}
 
-/* BRAND STORY */
-.story{background:var(--dark);color:var(--cream);overflow:hidden}
-.story-inner{display:grid;grid-template-columns:1fr;max-width:1400px;margin:0 auto;gap:40px;align-items:center}
-@media(min-width:768px){.story-inner{grid-template-columns:1fr 1fr;gap:80px}}
-.story-img{aspect-ratio:4/5;overflow:hidden;border-radius:4px}
-.story-img img{width:100%;height:100%;object-fit:cover}
-.story-content{padding:20px 0}
-.story-label{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
-.story-title{font-family:'Cinzel',serif;font-size:clamp(24px,3vw,36px);letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;line-height:1.3}
-.story-text{font-size:14px;line-height:1.8;opacity:.8;margin-bottom:12px}
-.story-hieroglyphs{margin-top:24px;font-size:28px;letter-spacing:12px;opacity:.25}
 
 /* COMMUNITY / INSTAGRAM */
 .community-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;max-width:1600px;margin:0 auto}
@@ -222,14 +202,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .community-item:hover .community-hover{opacity:1}
 .community-hover svg{width:24px;height:24px;color:#fff}
 
-/* FEATURES BAR */
-.features{background:var(--papyrus);padding:40px 20px}
-.features-inner{display:grid;grid-template-columns:1fr;gap:24px;max-width:1200px;margin:0 auto;text-align:center}
-@media(min-width:768px){.features-inner{grid-template-columns:repeat(4,1fr);gap:20px}}
-.feature-item{display:flex;flex-direction:column;align-items:center;gap:10px}
-.feature-icon{font-size:28px;color:var(--gold)}
-.feature-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase}
-.feature-desc{font-size:12px;color:var(--text-light)}
 
 /* NEWSLETTER */
 .newsletter{background:var(--cream);text-align:center;padding:80px 20px}
@@ -316,14 +288,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* RTL SUPPORT */
 [dir="rtl"] body{font-family:'Cairo',system-ui,sans-serif}
-[dir="rtl"] .cinzel,[dir="rtl"] .section-title,[dir="rtl"] .campaign-title,[dir="rtl"] .story-title,
+[dir="rtl"] .cinzel,[dir="rtl"] .section-title,[dir="rtl"] .campaign-title,
 [dir="rtl"] .newsletter-title,[dir="rtl"] .category-name,[dir="rtl"] .hero-title,
 [dir="rtl"] .product-name,[dir="rtl"] .modal-name,[dir="rtl"] .cart-header h3,
-[dir="rtl"] .footer-col h4,[dir="rtl"] .feature-title,[dir="rtl"] .product-quick,
+[dir="rtl"] .footer-col h4,[dir="rtl"] .product-quick,
 [dir="rtl"] .hero-cta span,[dir="rtl"] .campaign-btn,[dir="rtl"] .cart-checkout-btn,
 [dir="rtl"] .modal-add-btn,[dir="rtl"] .newsletter-form button,
 [dir="rtl"] .header-nav a,[dir="rtl"] .mobile-links a,
-[dir="rtl"] .lookbook-hover span,[dir="rtl"] .cart-item-name{font-family:'Reem Kufi','Cairo',sans-serif}
+[dir="rtl"] .lookbook-hover span,[dir="rtl"] .cart-item-name,
+[dir="rtl"] .hieroglyphs-translate{font-family:'Reem Kufi','Cairo',sans-serif}
 [dir="rtl"] .header-nav{direction:rtl}
 [dir="rtl"] .header-left{flex-direction:row-reverse}
 [dir="rtl"] .header-right{flex-direction:row-reverse}
@@ -337,13 +310,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 [dir="rtl"] .product-wishlist{right:auto;left:12px}
 [dir="rtl"] .product-price .old{margin-left:0;margin-right:8px}
 [dir="rtl"] .campaign-overlay{direction:rtl}
-[dir="rtl"] .footer-brand p,[dir="rtl"] .footer-col a,[dir="rtl"] .story-text,[dir="rtl"] .modal-desc{direction:rtl;text-align:right}
+[dir="rtl"] .footer-brand p,[dir="rtl"] .footer-col a,[dir="rtl"] .modal-desc{direction:rtl;text-align:right}
 [dir="rtl"] .cart-item{direction:rtl}
 [dir="rtl"] .cart-item-remove{align-self:flex-start}
 [dir="rtl"] .scroll-top{left:auto;right:30px}
 [dir="rtl"] .toast{right:auto;left:30px}
-[dir="rtl"] .announce::before{left:auto;right:20px}
-[dir="rtl"] .announce::after{right:auto;left:20px}
 
 /* LOADING SCREEN */
 .loader{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s var(--ease)}
@@ -356,11 +327,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <!-- LOADER -->
 <div class="loader" id="loader">
-  <svg viewBox="0 0 200 32"><text x="0" y="26" font-family="'Cinzel',serif" font-size="28" letter-spacing="12" fill="currentColor">PLUZΞ</text></svg>
+  <svg viewBox="0 0 180 32" fill="currentColor">
+    <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZ</text>
+    <g transform="translate(145,5)">
+      <rect x="0" y="0" width="22" height="4" fill="currentColor"/>
+      <rect x="0" y="9.5" width="22" height="4" fill="currentColor"/>
+      <rect x="0" y="19" width="22" height="4" fill="currentColor"/>
+    </g>
+  </svg>
 </div>
-
-<!-- ANNOUNCEMENT BAR -->
-<div class="announce" data-i18n="announce">Free Shipping on Orders Over 800 EGP</div>
 
 <!-- HEADER -->
 <header class="header at-top" id="header">
@@ -372,23 +347,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <a href="#new-arrivals" data-i18n="nav_new">New In</a>
       <a href="#categories" data-i18n="nav_shop">Shop</a>
       <a href="#lookbook" data-i18n="nav_lookbook">Lookbook</a>
-      <a href="#story" data-i18n="nav_story">Our Story</a>
     </nav>
   </div>
   <div class="header-center">
     <a href="#" class="header-logo">
-      <svg viewBox="0 0 220 44" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="28" font-family="'Cinzel',serif" font-size="28" font-weight="500" letter-spacing="14" fill="currentColor">PLUZ</text>
-        <g transform="translate(162,6)">
-          <rect x="0" y="2" width="16" height="2" fill="currentColor"/>
-          <rect x="0" y="10" width="16" height="2" fill="currentColor"/>
-          <rect x="0" y="18" width="16" height="2" fill="currentColor"/>
-        </g>
-        <g transform="translate(88,34)" opacity=".45">
-          <line x1="0" y1="0" x2="14" y2="0" stroke="currentColor" stroke-width=".8"/>
-          <circle cx="21" cy="0" r="2.5" fill="none" stroke="currentColor" stroke-width=".8"/>
-          <path d="M23.5,0 Q26,-2.5 28.5,0" stroke="currentColor" stroke-width=".8" fill="none"/>
-          <line x1="35" y1="0" x2="49" y2="0" stroke="currentColor" stroke-width=".8"/>
+      <svg viewBox="0 0 180 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZ</text>
+        <g transform="translate(145,5)">
+          <rect x="0" y="0" width="22" height="4" fill="currentColor"/>
+          <rect x="0" y="9.5" width="22" height="4" fill="currentColor"/>
+          <rect x="0" y="19" width="22" height="4" fill="currentColor"/>
         </g>
       </svg>
     </a>
@@ -414,7 +382,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <a href="#new-arrivals" class="mobile-link" data-i18n="nav_new">New Arrivals</a>
       <a href="#categories" class="mobile-link" data-i18n="nav_shop_all">Shop All</a>
       <a href="#lookbook" class="mobile-link" data-i18n="nav_lookbook">Lookbook</a>
-      <a href="#story" class="mobile-link" data-i18n="nav_story">Our Story</a>
       <a href="#community" class="mobile-link" data-i18n="nav_community">Community</a>
       <a href="#" class="mobile-link" data-i18n="nav_size">Size Guide</a>
       <a href="#" class="mobile-link" data-i18n="nav_contact">Contact</a>
@@ -442,7 +409,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <div class="cart-footer" id="cartFooter" style="display:none">
       <div class="cart-total">
         <span data-i18n="subtotal">Subtotal</span>
-        <span id="cartTotal">0 ج.م</span>
+        <span id="cartTotal">0 L.E</span>
       </div>
       <button class="cart-checkout-btn" data-i18n="checkout">Checkout</button>
     </div>
@@ -471,28 +438,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span>𓂀 New Arrivals</span><span class="dot">◆</span>
-    <span>𓃭 Egyptian Heritage</span><span class="dot">◆</span>
-    <span>𓋴 Premium Cotton</span><span class="dot">◆</span>
-    <span>𓁹 Handcrafted Details</span><span class="dot">◆</span>
-    <span>𓂋 Free Returns</span><span class="dot">◆</span>
-    <span>𓇳 Pharaonic Collection</span><span class="dot">◆</span>
-    <span>𓂀 New Arrivals</span><span class="dot">◆</span>
-    <span>𓃭 Egyptian Heritage</span><span class="dot">◆</span>
-    <span>𓋴 Premium Cotton</span><span class="dot">◆</span>
-    <span>𓁹 Handcrafted Details</span><span class="dot">◆</span>
-    <span>𓂋 Free Returns</span><span class="dot">◆</span>
-    <span>𓇳 Pharaonic Collection</span><span class="dot">◆</span>
+
+<!-- PHARAONIC QUOTE -->
+<section class="pharaonic-quote reveal">
+  <div class="pharaonic-quote-inner">
+    <p class="hieroglyphs-text">𓂀𓁹𓋴𓅃𓆣𓇳𓃭𓂋𓏏𓈖𓏤𓂧𓏏𓏭𓅱𓀀</p>
+    <p class="hieroglyphs-translate" data-i18n="pharaonic_quote">"I have walked the eternal path — my spirit endures in every thread."</p>
+    <p class="hieroglyphs-source" data-i18n="pharaonic_source">— Inscription from the Tomb of Khufu, Dynasty IV</p>
   </div>
-</div>
+</section>
 
 <!-- NEW ARRIVALS -->
 <section class="section" id="new-arrivals">
   <div class="section-header reveal">
-    <p class="section-label">𓂀 New Season 𓂀</p>
     <h2 class="section-title" data-i18n="new_arrivals">New Arrivals</h2>
   </div>
   <div class="products-grid">
@@ -505,7 +463,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       </div>
       <div class="product-info">
         <h3 class="product-name">Cartouche Oversize Tee</h3>
-        <p class="product-price">599 ج.م</p>
+        <p class="product-price">599 L.E</p>
         <div class="product-colors">
           <span class="product-swatch active" style="background:#1a1a1a"></span>
           <span class="product-swatch" style="background:#f5efe6"></span>
@@ -521,7 +479,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       </div>
       <div class="product-info">
         <h3 class="product-name">Camp Collar Linen Shirt</h3>
-        <p class="product-price">899 ج.م</p>
+        <p class="product-price">899 L.E</p>
         <div class="product-colors">
           <span class="product-swatch active" style="background:#f5efe6"></span>
         </div>
@@ -535,7 +493,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       </div>
       <div class="product-info">
         <h3 class="product-name">Essential Oversize Tee</h3>
-        <p class="product-price">449 ج.م</p>
+        <p class="product-price">449 L.E</p>
         <div class="product-colors">
           <span class="product-swatch active" style="background:#1a1a1a"></span>
           <span class="product-swatch" style="background:#f5efe6"></span>
@@ -552,7 +510,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       </div>
       <div class="product-info">
         <h3 class="product-name">Signature Tee Set</h3>
-        <p class="product-price">799 ج.م <span class="old">898 ج.م</span></p>
+        <p class="product-price">799 L.E <span class="old">898 L.E</span></p>
       </div>
     </div>
     <div class="product-card reveal" onclick="openProduct(4)">
@@ -563,7 +521,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       </div>
       <div class="product-info">
         <h3 class="product-name">Heritage Linen Shirt</h3>
-        <p class="product-price">949 ج.م</p>
+        <p class="product-price">949 L.E</p>
         <div class="product-colors">
           <span class="product-swatch active" style="background:#f5efe6"></span>
           <span class="product-swatch" style="background:#d4b896"></span>
@@ -579,7 +537,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       </div>
       <div class="product-info">
         <h3 class="product-name">Essentials 3-Pack</h3>
-        <p class="product-price">1,199 ج.م <span class="old">1,347 ج.م</span></p>
+        <p class="product-price">1,199 L.E <span class="old">1,347 L.E</span></p>
       </div>
     </div>
     <div class="product-card reveal" onclick="openProduct(6)">
@@ -591,7 +549,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       </div>
       <div class="product-info">
         <h3 class="product-name">Dynasty Cargo Pants</h3>
-        <p class="product-price">749 ج.م</p>
+        <p class="product-price">749 L.E</p>
         <div class="product-colors">
           <span class="product-swatch active" style="background:#f5efe6"></span>
           <span class="product-swatch" style="background:#1a1a1a"></span>
@@ -606,7 +564,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       </div>
       <div class="product-info">
         <h3 class="product-name">Pharaoh Polo Shirt</h3>
-        <p class="product-price">699 ج.م</p>
+        <p class="product-price">699 L.E</p>
         <div class="product-colors">
           <span class="product-swatch active" style="background:#f5efe6"></span>
         </div>
@@ -630,7 +588,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <!-- CATEGORIES -->
 <section class="section" id="categories">
   <div class="section-header reveal">
-    <p class="section-label">𓋴 Collections</p>
     <h2 class="section-title" data-i18n="shop_category">Shop by Category</h2>
   </div>
   <div class="categories-grid">
@@ -658,36 +615,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 </section>
 
-<!-- FEATURES BAR -->
-<div class="features">
-  <div class="features-inner">
-    <div class="feature-item">
-      <div class="feature-icon">𓂋</div>
-      <h4 class="feature-title" data-i18n="feat_ship">Free Shipping</h4>
-      <p class="feature-desc" data-i18n="feat_ship_d">On orders over 800 EGP</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon">𓁹</div>
-      <h4 class="feature-title" data-i18n="feat_quality">Premium Quality</h4>
-      <p class="feature-desc" data-i18n="feat_quality_d">100% Egyptian Cotton</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon">𓃭</div>
-      <h4 class="feature-title" data-i18n="feat_return">Easy Returns</h4>
-      <p class="feature-desc" data-i18n="feat_return_d">14-day return policy</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon">𓇳</div>
-      <h4 class="feature-title" data-i18n="feat_pay">Secure Payment</h4>
-      <p class="feature-desc" data-i18n="feat_pay_d">SSL encrypted checkout</p>
-    </div>
-  </div>
-</div>
 
 <!-- LOOKBOOK -->
 <section class="section" id="lookbook">
   <div class="section-header reveal">
-    <p class="section-label">𓁹 Editorial</p>
     <h2 class="section-title" data-i18n="lookbook">The Lookbook</h2>
   </div>
   <div class="lookbook-grid">
@@ -714,25 +645,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 </section>
 
-<!-- BRAND STORY -->
-<section class="section story" id="story">
-  <div class="story-inner">
-    <div class="story-img reveal">
-      <img src="images/community-4.jpg" alt="PLUZE Story" loading="lazy">
-    </div>
-    <div class="story-content reveal">
-      <p class="story-label">𓂀 Our Heritage</p>
-      <h2 class="story-title" data-i18n="story_title">Street Culture.<br>Egyptian Soul.</h2>
-      <p class="story-text" data-i18n="story_text">Born in Cairo, PLUZE bridges ancient Egyptian heritage and modern streetwear. Every piece carries the spirit of the pharaohs — reimagined for today.</p>
-      <div class="story-hieroglyphs">𓂀 𓃭 𓋴 𓁹 𓂋 𓇳 𓅃 𓆣</div>
-    </div>
-  </div>
-</section>
 
 <!-- COMMUNITY -->
 <section id="community">
   <div class="section-header reveal" style="padding:80px 20px 40px">
-    <p class="section-label">𓃭 @pluze.eg</p>
     <h2 class="section-title" data-i18n="community">Join the Dynasty</h2>
   </div>
   <div class="community-grid">
@@ -776,7 +692,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="footer-hieroglyphs">𓂀 𓃭 𓋴 𓁹 𓂋 𓇳 𓅃 𓆣 𓂀 𓃭 𓋴 𓁹 𓂋 𓇳 𓅃 𓆣</div>
   <div class="footer-top">
     <div class="footer-brand">
-      <svg viewBox="0 0 200 32" fill="currentColor" height="24"><text x="0" y="26" font-family="'Cinzel',serif" font-size="28" letter-spacing="12" fill="currentColor">PLUZΞ</text></svg>
+      <svg viewBox="0 0 180 32" fill="currentColor" height="24">
+        <text x="0" y="26" font-family="'DM Sans',sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="currentColor">PLUZ</text>
+        <g transform="translate(145,5)"><rect x="0" y="0" width="22" height="4" fill="currentColor"/><rect x="0" y="9.5" width="22" height="4" fill="currentColor"/><rect x="0" y="19" width="22" height="4" fill="currentColor"/></g>
+      </svg>
       <p>Street Culture. Egyptian Soul. Born in Cairo, worn worldwide. Every thread tells a story that's 5,000 years in the making.</p>
     </div>
     <div class="footer-col">
@@ -865,7 +784,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 let currentLang = 'en';
 const i18n = {
   ar: {
-    announce:'شحن مجاني للطلبات فوق ٨٠٠ ج.م',
+    announce:'شحن مجاني للطلبات فوق 800 L.E',
     hero_title:'صُنع للحاضر.<br>متجذّر فينا.',
     hero_cta:'تسوّق الآن',
     new_arrivals:'وصل حديثاً',
@@ -875,13 +794,9 @@ const i18n = {
     campaign_title:'البس حكايتك',campaign_btn:'اكتشف الآن',
     shop_category:'تسوّق حسب الفئة',
     cat_tees:'تيشيرتات',cat_tees_n:'١٢ منتج',cat_shirts:'قمصان',cat_shirts_n:'٨ منتجات',cat_bundles:'باقات',cat_bundles_n:'٤ منتجات',
-    feat_ship:'شحن مجاني',feat_ship_d:'للطلبات فوق ٨٠٠ ج.م',
-    feat_quality:'جودة عالية',feat_quality_d:'قطن مصري ١٠٠٪',
-    feat_return:'إرجاع سهل',feat_return_d:'سياسة إرجاع ١٤ يوم',
-    feat_pay:'دفع آمن',feat_pay_d:'تشفير SSL كامل',
     lookbook:'لوك بوك',
-    story_title:'ثقافة الشارع.<br>روح مصرية.',
-    story_text:'وُلدت PLUZE في شوارع القاهرة لتربط بين التراث الفرعوني وأزياء الشارع العصرية. كل قطعة تحمل روح الفراعنة — مُعاد تخيلها لليوم.',
+    pharaonic_quote:'"سلكتُ الدرب الأبدي — روحي تحيا في كل خيط."',
+    pharaonic_source:'— نقش من مقبرة خوفو، الأسرة الرابعة',
     community:'انضم للعيلة',
     newsletter_title:'انضم للعيلة',
     email_placeholder:'بريدك الإلكتروني',subscribe:'اشترك',
@@ -929,7 +844,6 @@ window.addEventListener('load', () => {
 
 // HEADER SCROLL
 const header = document.getElementById('header');
-const announceBar = document.querySelector('.announce');
 let lastScroll = 0;
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
@@ -974,7 +888,7 @@ function openProduct(idx) {
   document.getElementById('modalImg').src = currentProduct.img;
   const isAr = currentLang === 'ar';
   document.getElementById('modalName').textContent = isAr ? productsAr[idx].name : currentProduct.name;
-  document.getElementById('modalPrice').textContent = currentProduct.price.toLocaleString() + ' ج.م';
+  document.getElementById('modalPrice').textContent = currentProduct.price.toLocaleString() + ' L.E';
   document.getElementById('modalDesc').textContent = isAr ? productsAr[idx].desc : currentProduct.desc;
   document.getElementById('modalQty').textContent = 1;
   document.querySelectorAll('.modal-sizes input')[2].checked = true;
@@ -1031,7 +945,7 @@ function updateCart() {
 
   emptyEl.style.display = 'none';
   footerEl.style.display = '';
-  totalEl.textContent = totalPrice.toLocaleString() + ' ج.م';
+  totalEl.textContent = totalPrice.toLocaleString() + ' L.E';
 
   itemsEl.querySelectorAll('.cart-item').forEach(e => e.remove());
   const isAr = currentLang === 'ar';
@@ -1046,7 +960,7 @@ function updateCart() {
       <div class="cart-item-info">
         <p class="cart-item-name">${displayName}</p>
         <p class="cart-item-size">${sizeLabel}: ${item.size}</p>
-        <p class="cart-item-price">${item.price.toLocaleString()} ج.م</p>
+        <p class="cart-item-price">${item.price.toLocaleString()} L.E</p>
         <div class="cart-item-qty">
           <button onclick="cartQty(${i},-1)">−</button>
           <span>${item.qty}</span>
