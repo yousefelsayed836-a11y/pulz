@@ -360,13 +360,22 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .video-discount-badge{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:12px 24px;background:rgba(184,134,11,.15);border:1px solid rgba(184,134,11,.3);border-radius:30px;color:var(--gold);font-size:13px;letter-spacing:1px;font-weight:500}
 .video-discount-badge svg{width:18px;height:18px;fill:var(--gold)}
 
-/* MOBILE VIDEO FULLSCREEN */
-.video-mobile-fullscreen{display:none;position:fixed;inset:0;z-index:5000;background:#000;align-items:center;justify-content:center}
-.video-mobile-fullscreen.active{display:flex}
-.video-mobile-fullscreen video{width:100vh;height:100vw;transform:rotate(90deg);object-fit:cover}
-.video-mobile-fullscreen .vfs-close{position:absolute;top:16px;right:16px;z-index:5001;width:40px;height:40px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px}
-.video-mobile-fullscreen .vfs-progress{position:absolute;bottom:0;left:0;height:3px;background:var(--gold);z-index:5001}
-.rotate-prompt{position:absolute;inset:0;z-index:5002;background:rgba(0,0,0,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;color:#fff;text-align:center;padding:30px;transition:opacity .5s var(--ease)}
+/* VIDEO FULLSCREEN OVERLAY — zoom in/out */
+.video-fullscreen-overlay{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;pointer-events:none;transition:background .5s var(--ease)}
+.video-fullscreen-overlay.active{pointer-events:auto;background:rgba(0,0,0,.95)}
+.video-fullscreen-overlay.shrinking{pointer-events:none}
+.vfs-inner{width:90vw;max-width:900px;aspect-ratio:16/9;position:relative;border-radius:8px;overflow:hidden;transform:scale(0);opacity:0;transition:transform .6s var(--ease),opacity .4s var(--ease),border-radius .5s var(--ease)}
+.video-fullscreen-overlay.active .vfs-inner{transform:scale(1);opacity:1;width:100vw;max-width:100vw;height:100vh;aspect-ratio:auto;border-radius:0}
+.video-fullscreen-overlay.shrinking .vfs-inner{transform:scale(0);opacity:0;border-radius:16px}
+.vfs-inner video{width:100%;height:100%;object-fit:contain;background:#000}
+.vfs-close{position:absolute;top:20px;right:20px;z-index:5001;width:44px;height:44px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;transition:all .3s;opacity:0;transform:scale(0)}
+.video-fullscreen-overlay.active .vfs-close{opacity:1;transform:scale(1);transition-delay:.3s}
+.vfs-close:hover{background:rgba(255,255,255,.3)}
+.vfs-progress{position:absolute;bottom:0;left:0;height:3px;background:var(--gold);z-index:5001;transition:width .1s linear}
+
+/* MOBILE: rotate video to fill portrait */
+.rotate-prompt{position:absolute;inset:0;z-index:5002;background:rgba(0,0,0,.88);display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;color:#fff;text-align:center;padding:30px;transition:opacity .5s var(--ease)}
+.rotate-prompt.show{display:flex}
 .rotate-prompt.hidden{opacity:0;pointer-events:none}
 .rotate-prompt .rotate-icon{width:60px;height:60px;animation:rotatePhone 2s ease-in-out infinite}
 @keyframes rotatePhone{0%,100%{transform:rotate(0deg)}50%{transform:rotate(90deg)}}
@@ -374,11 +383,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .rotate-prompt .rotate-sub{font-family:'DM Sans',sans-serif;font-size:13px;opacity:.7;letter-spacing:0;margin-top:-8px}
 .rotate-prompt .skip-rotate{margin-top:10px;padding:10px 28px;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:12px;letter-spacing:2px;text-transform:uppercase;border-radius:30px;transition:all .3s}
 .rotate-prompt .skip-rotate:hover{border-color:#fff;background:rgba(255,255,255,.1)}
-
-@media(min-width:769px){.video-mobile-fullscreen{display:none !important}}
-@media(max-width:768px){.video-container{border-radius:6px;aspect-ratio:16/9}}
-@media (orientation: landscape) and (max-height:500px){
-  .video-mobile-fullscreen video{width:100%;height:100%;transform:none}
+@media(max-width:768px){
+  .video-fullscreen-overlay.active .vfs-inner video{object-fit:cover;transform:rotate(90deg);width:100vh;height:100vw}
+}
+@media(max-width:768px) and (orientation:landscape){
+  .video-fullscreen-overlay.active .vfs-inner video{transform:none;width:100%;height:100%;object-fit:contain}
 }
 
 /* DISCOUNT POPUP */
@@ -603,71 +612,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 </div>
 
-<!-- WATCH OUR STORY -->
-<section class="video-story" id="our-story">
-  <div class="section-header reveal" style="margin-bottom:30px">
-    <p class="section-label" data-i18n="story_label">Exclusive Offer</p>
-    <h2 class="section-title" data-i18n="story_title">Watch Our Story & Get 10% Off</h2>
-    <p class="section-desc" data-i18n="story_desc">Watch our journey and unlock a special discount code</p>
-  </div>
-  <div class="video-container" id="videoContainer">
-    <div class="video-poster" id="videoPoster">
-      <img src="images/story-poster.jpg" alt="Watch Our Story">
-    </div>
-    <button class="video-play-btn" id="videoPlayBtn" aria-label="Play video">
-      <svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>
-    </button>
-    <video id="storyVideo" preload="metadata" playsinline poster="images/story-poster.jpg">
-      <source src="videos/story.mp4" type="video/mp4">
-    </video>
-    <div class="video-progress" id="videoProgress" style="width:0%"></div>
-  </div>
-  <div style="text-align:center">
-    <div class="video-discount-badge reveal">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <span data-i18n="story_badge">Watch till the end to unlock your reward</span>
-    </div>
-  </div>
-</section>
-
-<!-- MOBILE VIDEO FULLSCREEN -->
-<div class="video-mobile-fullscreen" id="videoMobileFS">
-  <div class="rotate-prompt" id="rotatePrompt">
-    <svg class="rotate-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5">
-      <rect x="4" y="2" width="16" height="20" rx="2"/>
-      <path d="M12 18h.01"/>
-    </svg>
-    <p data-i18n="rotate_title">Rotate Your Phone</p>
-    <p class="rotate-sub" data-i18n="rotate_sub">For the best experience, turn your phone sideways</p>
-    <button class="skip-rotate" id="skipRotate" data-i18n="rotate_skip">Watch Anyway</button>
-  </div>
-  <video id="storyVideoMobile" playsinline>
-    <source src="videos/story.mp4" type="video/mp4">
-  </video>
-  <button class="vfs-close" id="vfsClose">&times;</button>
-  <div class="vfs-progress" id="vfsProgress" style="width:0%"></div>
-</div>
-
-<!-- DISCOUNT POPUP -->
-<div class="discount-popup" id="discountPopup">
-  <div class="discount-popup-overlay" id="discountPopupOverlay"></div>
-  <div class="discount-popup-content">
-    <button class="discount-popup-close" id="discountPopupClose">&times;</button>
-    <div class="discount-confetti" id="discountConfetti"></div>
-    <div class="discount-popup-icon">
-      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    </div>
-    <div class="discount-percent">10%</div>
-    <h3 data-i18n="discount_title">You Earned It!</h3>
-    <p class="discount-popup-sub" data-i18n="discount_sub">Thank you for watching our story. Here's your exclusive discount code:</p>
-    <div class="discount-code-box">
-      <span class="discount-code">PLUZE10</span>
-      <button class="discount-copy-btn" id="discountCopyBtn" data-i18n="discount_copy">Copy</button>
-    </div>
-    <button class="discount-popup-cta" id="discountShopBtn" data-i18n="discount_cta">Shop Now with 10% Off</button>
-  </div>
-</div>
-
 <!-- NEW ARRIVALS -->
 <section class="section" id="new-arrivals">
   <div class="section-header reveal">
@@ -823,6 +767,74 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     </div>
   </div>
 </section>
+
+
+<!-- WATCH OUR STORY -->
+<section class="video-story" id="our-story">
+  <div class="section-header reveal" style="margin-bottom:30px">
+    <p class="section-label" data-i18n="story_label">Exclusive Offer</p>
+    <h2 class="section-title" data-i18n="story_title">Watch Our Story & Get 10% Off</h2>
+    <p class="section-desc" data-i18n="story_desc">Watch our journey and unlock a special discount code</p>
+  </div>
+  <div class="video-container" id="videoContainer">
+    <video id="storyVideo" preload="auto" playsinline poster="images/story-poster.jpg">
+      <source src="videos/story.mp4" type="video/mp4">
+    </video>
+    <div class="video-poster" id="videoPoster">
+      <img src="images/story-poster.jpg" alt="Watch Our Story">
+    </div>
+    <button class="video-play-btn" id="videoPlayBtn" aria-label="Play video">
+      <svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>
+    </button>
+    <div class="video-progress" id="videoProgress" style="width:0%"></div>
+  </div>
+  <div style="text-align:center">
+    <div class="video-discount-badge reveal">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span data-i18n="story_badge">Watch till the end to unlock your reward</span>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO FULLSCREEN OVERLAY -->
+<div class="video-fullscreen-overlay" id="videoFullscreen">
+  <button class="vfs-close" id="vfsClose">&times;</button>
+  <div class="vfs-inner" id="vfsInner">
+    <video id="storyVideoFS" playsinline preload="auto">
+      <source src="videos/story.mp4" type="video/mp4">
+    </video>
+    <div class="vfs-progress" id="vfsProgress" style="width:0%"></div>
+  </div>
+  <div class="rotate-prompt" id="rotatePrompt">
+    <svg class="rotate-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5">
+      <rect x="4" y="2" width="16" height="20" rx="2"/>
+      <path d="M12 18h.01"/>
+    </svg>
+    <p data-i18n="rotate_title">Rotate Your Phone</p>
+    <p class="rotate-sub" data-i18n="rotate_sub">For the best experience, turn your phone sideways</p>
+    <button class="skip-rotate" id="skipRotate" data-i18n="rotate_skip">Watch Anyway</button>
+  </div>
+</div>
+
+<!-- DISCOUNT POPUP -->
+<div class="discount-popup" id="discountPopup">
+  <div class="discount-popup-overlay" id="discountPopupOverlay"></div>
+  <div class="discount-popup-content">
+    <button class="discount-popup-close" id="discountPopupClose">&times;</button>
+    <div class="discount-confetti" id="discountConfetti"></div>
+    <div class="discount-popup-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <div class="discount-percent">10%</div>
+    <h3 data-i18n="discount_title">You Earned It!</h3>
+    <p class="discount-popup-sub" data-i18n="discount_sub">Thank you for watching our story. Here's your exclusive discount code:</p>
+    <div class="discount-code-box">
+      <span class="discount-code">PLUZE10</span>
+      <button class="discount-copy-btn" id="discountCopyBtn" data-i18n="discount_copy">Copy</button>
+    </div>
+    <button class="discount-popup-cta" id="discountShopBtn" data-i18n="discount_cta">Shop Now with 10% Off</button>
+  </div>
+</div>
 
 
 <!-- PHARAONIC QUOTE 2 -->
@@ -1410,18 +1422,18 @@ document.addEventListener('keydown', e => {
     cartDrawer.classList.remove('open');
     closeModal();
     closeDiscountPopup();
-    closeMobileVideo();
+    closeVideoFullscreen(true);
   }
 });
 
 // ========== VIDEO STORY SECTION ==========
 const storyVideo = document.getElementById('storyVideo');
-const storyVideoMobile = document.getElementById('storyVideoMobile');
 const videoContainer = document.getElementById('videoContainer');
 const videoPoster = document.getElementById('videoPoster');
 const videoPlayBtn = document.getElementById('videoPlayBtn');
 const videoProgress = document.getElementById('videoProgress');
-const videoMobileFS = document.getElementById('videoMobileFS');
+const videoFullscreen = document.getElementById('videoFullscreen');
+const storyVideoFS = document.getElementById('storyVideoFS');
 const rotatePrompt = document.getElementById('rotatePrompt');
 const vfsProgress = document.getElementById('vfsProgress');
 let videoWatched = false;
@@ -1429,88 +1441,80 @@ let discountUnlocked = false;
 
 function isMobile() { return window.innerWidth <= 768; }
 
-videoPlayBtn.onclick = function() {
-  if (isMobile()) {
-    openMobileVideo();
-  } else {
-    videoPoster.classList.add('hidden');
-    videoPlayBtn.classList.add('hidden');
-    storyVideo.play();
-  }
+videoPlayBtn.onclick = function(e) {
+  e.stopPropagation();
+  openVideoFullscreen();
+};
+videoContainer.onclick = function() {
+  openVideoFullscreen();
 };
 
-videoContainer.onclick = function(e) {
-  if (e.target === videoPlayBtn || videoPlayBtn.contains(e.target)) return;
-  if (isMobile()) return;
-  if (storyVideo.paused && videoPoster.classList.contains('hidden')) {
-    storyVideo.play();
-  } else if (!storyVideo.paused) {
-    storyVideo.pause();
-  }
-};
-
-storyVideo.addEventListener('timeupdate', function() {
-  if (storyVideo.duration) {
-    videoProgress.style.width = (storyVideo.currentTime / storyVideo.duration * 100) + '%';
-  }
-});
-
-storyVideo.addEventListener('ended', function() {
-  videoWatched = true;
-  videoProgress.style.width = '100%';
-  videoPoster.classList.remove('hidden');
-  videoPlayBtn.classList.remove('hidden');
-  setTimeout(showDiscountPopup, 500);
-});
-
-// Mobile fullscreen video
-function openMobileVideo() {
-  videoMobileFS.classList.add('active');
+function openVideoFullscreen() {
+  storyVideoFS.currentTime = 0;
+  videoFullscreen.classList.add('active');
   document.body.style.overflow = 'hidden';
-  rotatePrompt.classList.remove('hidden');
-  storyVideoMobile.currentTime = 0;
+  if (isMobile()) {
+    rotatePrompt.classList.add('show');
+    rotatePrompt.classList.remove('hidden');
+  } else {
+    storyVideoFS.play();
+  }
 }
+
+function closeVideoFullscreen(animate) {
+  storyVideoFS.pause();
+  if (animate) {
+    videoFullscreen.classList.remove('active');
+    videoFullscreen.classList.add('shrinking');
+    setTimeout(function() {
+      videoFullscreen.classList.remove('shrinking');
+      document.body.style.overflow = '';
+    }, 600);
+  } else {
+    videoFullscreen.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+document.getElementById('vfsClose').onclick = function() { closeVideoFullscreen(true); };
 
 document.getElementById('skipRotate').onclick = function() {
   rotatePrompt.classList.add('hidden');
-  storyVideoMobile.play();
+  setTimeout(function() { rotatePrompt.classList.remove('show'); }, 500);
+  storyVideoFS.play();
 };
 
 window.addEventListener('orientationchange', function() {
-  if (videoMobileFS.classList.contains('active')) {
+  if (videoFullscreen.classList.contains('active') && rotatePrompt.classList.contains('show')) {
     rotatePrompt.classList.add('hidden');
-    storyVideoMobile.play();
+    setTimeout(function() { rotatePrompt.classList.remove('show'); }, 500);
+    storyVideoFS.play();
   }
 });
 
 if (screen.orientation) {
   screen.orientation.addEventListener('change', function() {
-    if (videoMobileFS.classList.contains('active') && screen.orientation.type.includes('landscape')) {
+    if (videoFullscreen.classList.contains('active') && screen.orientation.type.includes('landscape')) {
       rotatePrompt.classList.add('hidden');
-      storyVideoMobile.play();
+      setTimeout(function() { rotatePrompt.classList.remove('show'); }, 500);
+      storyVideoFS.play();
     }
   });
 }
 
-storyVideoMobile.addEventListener('timeupdate', function() {
-  if (storyVideoMobile.duration) {
-    vfsProgress.style.width = (storyVideoMobile.currentTime / storyVideoMobile.duration * 100) + '%';
+storyVideoFS.addEventListener('timeupdate', function() {
+  if (storyVideoFS.duration) {
+    var pct = (storyVideoFS.currentTime / storyVideoFS.duration * 100);
+    vfsProgress.style.width = pct + '%';
+    videoProgress.style.width = pct + '%';
   }
 });
 
-storyVideoMobile.addEventListener('ended', function() {
+storyVideoFS.addEventListener('ended', function() {
   videoWatched = true;
-  closeMobileVideo();
-  setTimeout(showDiscountPopup, 500);
+  closeVideoFullscreen(true);
+  setTimeout(showDiscountPopup, 700);
 });
-
-document.getElementById('vfsClose').onclick = closeMobileVideo;
-
-function closeMobileVideo() {
-  storyVideoMobile.pause();
-  videoMobileFS.classList.remove('active');
-  document.body.style.overflow = '';
-}
 
 // ========== DISCOUNT POPUP ==========
 function showDiscountPopup() {
